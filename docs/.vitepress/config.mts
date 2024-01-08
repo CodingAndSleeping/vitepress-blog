@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/vitepress-blog/',
+  base: '/',
   srcDir: 'data',
   title: "路遥知码力",
   description: "A VitePress Site",
