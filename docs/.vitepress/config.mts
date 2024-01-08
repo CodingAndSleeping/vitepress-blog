@@ -14,12 +14,12 @@ export default defineConfig({
       {
         text: '前端知识',
         items: [
-          { text: 'HTML', link: '/html' },
-          { text: 'CSS', link: '/css' },
-          { text: 'JavaScript', link: '/front-end/javascript/' },
-          { text: 'TypeScript', link: '/typescript' },
-          { text: 'Vue', link: '/vue' },
-          { text: 'React', link: '/react' },
+          // { text: 'HTML', link: '/html' },
+          // { text: 'CSS', link: '/css' },
+          // { text: 'JavaScript', link: '/front-end/javascript/' },
+          // { text: 'TypeScript', link: '/typescript' },
+          // { text: 'Vue', link: '/vue' },
+          // { text: 'React', link: '/react' },
         ],
 
         
@@ -31,8 +31,8 @@ export default defineConfig({
         {
           text: 'Guide',
           items: [
-            { text: 'One3213', link: '/guide/one' },
-            { text: 'Two333333', link: '/guide/two' }
+            // { text: 'One3213', link: '/guide/one' },
+            // { text: 'Two333333', link: '/guide/two' }
           ]
         }
       ],
@@ -41,8 +41,8 @@ export default defineConfig({
         {
           text: 'Guide',
           items: [
-            { text: 'One3213', link: '/guide/one' },
-            { text: 'Two3123', link: '/guide/two' }
+            // { text: 'One3213', link: '/guide/one' },
+            // { text: 'Two3123', link: '/guide/two' }
           ]
         }
       ],
