@@ -63,17 +63,8 @@ export default defineConfig({
         link: '/Algorithm/',
       },
       {
-        text: '计算机基础',
-        items: [
-          {
-            text: '计算机网络',
-            link: '/ComputerKnowledge/ComputerNetwork/',
-          },
-          {
-            text: '浏览器',
-            link: '/ComputerKnowledge/BrowserKnowledge/',
-          },
-        ],
+        text: '浏览器',
+        link: '/浏览器/事件循环/',
       },
     ],
 
@@ -86,6 +77,16 @@ export default defineConfig({
         {
           text: '包管理器',
           link: '/前端工程化/包管理器',
+        },
+      ],
+      '/浏览器/': [
+        {
+          text: '事件循环',
+          link: '/浏览器/事件循环',
+        },
+        {
+          text: '网络通信',
+          link: '/浏览器/网络通信',
         },
       ],
 
