@@ -6,8 +6,11 @@ export default defineConfig({
   srcDir: 'data',
   title: '路遥知码力',
   // description: "A VitePress Site",
+  lastUpdated: true,
+  head: [['link', { rel: 'icon', href: '/vitepress-blog/favicon.svg' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: '/favicon.svg',
     nav: [
       { text: '主页', link: '/' },
       {
@@ -75,8 +78,8 @@ export default defineConfig({
           link: '/前端工程化/模块化',
         },
         {
-          text: '包管理器',
-          link: '/前端工程化/包管理器',
+          text: 'Webpack',
+          link: '/前端工程化/Webpack',
         },
       ],
       '/浏览器/': [
@@ -163,9 +166,16 @@ export default defineConfig({
       //   },
       // ],
     },
+    outline: {
+      level: [2, 4],
+    },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CodingAndSleeping' },
     ],
+
+    search: {
+      provider: 'local',
+    },
   },
 });
