@@ -361,6 +361,70 @@ module.exports = {
 </html>
 ```
 
+使用 `DefinePlugin` 注入全局成员变量：
+
+```js
+const webpack = require('webpack');
+
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      // 值要求的是一个代码片段
+      STRING: '"string"',
+      TRUE: true,
+      TRUE_STRING: JSON.stringify(true),
+      OBJECT: { foo: 'bar' },
+      OBJECT_STRING: JSON.stringify({ foo: 'bar' }),
+      NUMBER: 123,
+      NUMBER_STRING: JSON.stringify(123),
+      FUNCTION: function () {},
+      FUNCTION_STRING: '"function () {})"',
+    }),
+  ],
+};
+```
+
+在 `main.js` 中使用：
+
+```js
+console.log(STRING);
+console.log(STRING_STRING);
+console.log(TRUE);
+console.log(TRUE_STRING);
+console.log(OBJECT);
+console.log(OBJECT_STRING);
+console.log(NUMBER);
+console.log(NUMBER_STRING);
+console.log(FUNCTION);
+console.log(FUNCTION_STRING);
+```
+
+打包过后的结果：
+
+```js
+/******/ (() => {
+  // webpackBootstrap
+  console.log('string');
+  console.log('string');
+  console.log(true);
+  console.log(true);
+  console.log({ foo: bar });
+  console.log({ foo: 'bar' });
+  console.log(123);
+  console.log(123);
+  console.log(function () {});
+  console.log('function () {})');
+  /******/
+})();
+```
+
+需要注意的是，在注入全局变量时，如果该值为字符串，它将被作为代码片段来使用。如果是一个对象，它的值将被作为代码片段来使用。
+
 编写`plugin`：
 
 `plugin` 插件是一个具有 `apply` 方法的 `JavaScript` 对象。`apply` 方法会被 `webpack compiler` 调用，并且在整个编译生命周期都可以访问 `compiler` 对象。
@@ -471,27 +535,117 @@ module.exports = {
 
 在 `webpack 5.x` 版本中，默认开启 `source map`，可以通过配置 `devtool` 属性来修改 `source map` 的生成方式。
 
+`source-map`的类型有很多种，接下来，主要以 `source-map` 和 `eval` 两种生成方式进行介绍。
+
+首先，在 `webpack.config.js` 中配置 `devtool` 为 `source-map`：
+
 ```js
 module.exports = {
   ...
-  devtool: 'source-map', // 指定 source map 生成方式 为 'source-map'
+  devtool: 'source-map', // 开启 source map
   ...
 }
 ```
 
+然后在， 在 `main.js` 中添加一端错误的代码：
+
+```js
+import createHeading from './heading.js';
+
+const heading = createHeading();
+
+document.body.append(heading);
+
+console.log1('error'); // 错误代码
+```
+
+然后进行打包，可以看到 `dist` 目录下生成了 `main.js` 和 `main.js.map` 文件。
+
+![img9](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img9.png)
+
+进入 `dist`目录下，使用 `serve .`命令启动本地服务器，访问 `http://localhost:3000/` 地址，可以看到控制台输出了错误信息，以及对应的源代码行信息。
+
+![img13](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img13.png)
+
+在来看一个 `eval` 的例子：
+
+```js
+module.exports = {
+  ...
+  devtool: 'eval', // 开启 eval source map
+  ...
+}
+```
+
+同样进行打包, `dist` 目录下并没有生成 `map`文件：
+
+![img11](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img11.png)
+
+而是在 打包生成的文件中，使用 `eval`函数执行代码，只能映射到编译后的代码, 不能映射到源代码, 因此错误信息只能知道是哪个文件。
+
+![img14](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img14.png)
+
+![img15](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img15.png)
+
 除此之外，`source map` 还可以还有很多种类型, 每种类型生成的效率和速度都不不同，因此需要根据具体情况进行选择。
 
-从**初次构建速度**、 **监视模式再次构建速度**、 **是否适合生产**以及**生成质量**四个角度进行对比：
+从**初次构建速度**、 **监视模式再次构建速度**、 **是否适合生产**以及**生成质量**四个角度对所有的类型进行对比：
 
-|            devtool             |  build  | rebuild | production |                      quilty                      |
-| :----------------------------: | :-----: | :-----: | :--------: | :----------------------------------------------: |
-|             `eval`             | ​**快** | ​**快** |     否     |      低（不生成 `.map` 文件，内联在代码中）      |
-|    `eval-cheap-source-map`     |  较快   |  较快   |     否     |            较低（仅映射行，不映射列）            |
-| `eval-cheap-module-source-map` |  较快   |  较快   |     否     |          中等（映射行和模块，不映射列）          |
-|       `eval-source-map`        |  较慢   |  较慢   |     否     |           ​**高**​（映射行、列和模块）           |
-|       `cheap-source-map`       |  较快   |  较快   |     否     |            较低（仅映射行，不映射列）            |
-|   `cheap-module-source-map`    |  较快   |  较快   |     否     |          中等（映射行和模块，不映射列）          |
-|      `inline-source-map`       |  较慢   |  较慢   |     否     |    ​**高**​（映射行、列和模块，内联在代码中）    |
-|          `source-map`          |  较慢   |  较慢   | 是（可选） |        ​**高**​（生成单独的 `.map` 文件）        |
-|      `hidden-source-map`       |  较慢   |  较慢   | 是（可选） |    ​**高**​（生成 `.map` 文件，但不关联代码）    |
-|     `nosources-source-map`     |  较慢   |  较慢   | 是（可选） | ​**高**​（生成 `.map` 文件，但不包含源代码内容） |
+|            devtool             | build | rebuild | production |                      quilty                      |
+| :----------------------------: | :---: | :-----: | :--------: | :----------------------------------------------: |
+|            `(none)`            | ​ 快  |  ​ 快   |     否     |             低（不生成 `.map` 文件）             |
+|             `eval`             | ​ 快  |  ​ 快   |     否     |      低（不生成 `.map` 文件，内联在代码中）      |
+|    `eval-cheap-source-map`     | 较快  |  较快   |     否     |            较低（仅映射行，不映射列）            |
+| `eval-cheap-module-source-map` | 较快  |  较快   |     否     |          中等（映射行和模块，不映射列）          |
+|       `eval-source-map`        | 较慢  |  较慢   |     否     |           ​**高**​（映射行、列和模块）           |
+|       `cheap-source-map`       | 较快  |  较快   |     否     |            较低（仅映射行，不映射列）            |
+|   `cheap-module-source-map`    | 较快  |  较快   |     否     |          中等（映射行和模块，不映射列）          |
+|      `inline-source-map`       | 较慢  |  较慢   |     否     |    ​**高**​（映射行、列和模块，内联在代码中）    |
+|          `source-map`          | 较慢  |  较慢   | 是（可选） |        ​**高**​（生成单独的 `.map` 文件）        |
+|      `hidden-source-map`       | 较慢  |  较慢   | 是（可选） |    ​**高**​（生成 `.map` 文件，但不关联代码）    |
+|     `nosources-source-map`     | 较慢  |  较慢   | 是（可选） | ​**高**​（生成 `.map` 文件，但不包含源代码内容） |
+
+以上就是各种 `devtool` 的类型的特点，在开发中可以灵活选择，这里比较推荐这种方式：
+
+- 开发模式选择`eval-cheap-source-map`：开发阶段，生成速度较快，错误信息可以映射到行。
+- 生产模式选择 `none`：生成速度最快，不生成 `.map` 文件，不会暴露源代码。
+
+#### HMR
+
+`hmr` 全称 `Hot Module Replacement`，即热模块替换，是 `webpack` 提供的一种在不刷新浏览器的情况下更新模块的功能。
+
+开启 `hmr` 功能，需要在 `webpack.config.js` 中配置 `devServer` 的 `hot` 属性：
+
+```js
+module.exports = {
+  ...
+  devServer: {
+    hot: true, // 开启 hmr
+  },
+  ...
+}
+```
+
+对于 `css` 文件是可以自动热更新的， 而对于`js`文件 则需要在入口文件中使用 `module.hot.accept` 方法，告诉 `webpack` 哪些模块需要热更新，执行怎样的更新：
+
+```js
+if (module.hot) {
+  let lastEditor = editor;
+  // 第一个参数传递模块路径，第二个参数传递回调函数
+  module.hot.accept('./editor', () => {
+    // editor 模块更新了，需要这里手动处理热替换逻辑
+    const value = lastEditor.innerHTML;
+    document.body.removeChild(lastEditor);
+    const newEditor = createEditor();
+    newEditor.innerHTML = value;
+    document.body.appendChild(newEditor);
+    lastEditor = newEditor;
+  });
+}
+```
+
+::: tip
+在 `Webpack 5.x` 中，​ 不需要手动添加 `HotModuleReplacementPlugin`。当你设置 `devServer.hot: true` 时，`Webpack` 会自动启用该插件。
+:::
+
+### 三、webpack 性能优化
