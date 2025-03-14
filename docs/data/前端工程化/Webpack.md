@@ -535,7 +535,7 @@ module.exports = {
 
 在 `webpack 5.x` 版本中，默认开启 `source map`，可以通过配置 `devtool` 属性来修改 `source map` 的生成方式。
 
-`source-map`的类型有很多种，接下来，主要以 `source-map` 和 `eval` 两种生成方式进行介绍。
+`source map`的类型有很多种，接下来，主要以 `source-map` 和 `eval` 两种生成方式进行介绍。
 
 首先，在 `webpack.config.js` 中配置 `devtool` 为 `source-map`：
 
@@ -581,15 +581,15 @@ module.exports = {
 
 ![img11](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img11.png)
 
-而是在 打包生成的文件中，使用 `eval`函数执行代码，只能映射到编译后的代码, 不能映射到源代码, 因此错误信息只能知道是哪个文件。
+而是在 打包生成的文件中，使用 `eval`函数执行代码，只能映射到编译后的代码, 不能映射到源代码, 因此错误只能定位到文件。
 
 ![img14](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img14.png)
 
 ![img15](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img15.png)
 
-除此之外，`source map` 还可以还有很多种类型, 每种类型生成的效率和速度都不不同，因此需要根据具体情况进行选择。
+除此之外，`source map` 还有很多种类型, 每种类型生成的效率和速度都不同，因此需要根据具体情况进行选择。
 
-从**初次构建速度**、 **监视模式再次构建速度**、 **是否适合生产**以及**生成质量**四个角度对所有的类型进行对比：
+从**初次构建速度**、 **监视模式再次构建速度**、 **是否适合生产**以及**生成质量**四个维度进行对比：
 
 |            devtool             | build | rebuild | production |                      quilty                      |
 | :----------------------------: | :---: | :-----: | :--------: | :----------------------------------------------: |
