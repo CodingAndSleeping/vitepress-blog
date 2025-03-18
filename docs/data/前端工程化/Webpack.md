@@ -4,15 +4,15 @@
 本文基于 webpack 5.x 版本进行介绍，对于 webpack 4.x 版本可能存在部分功能不兼容的情况。
 :::
 
-## webpack 介绍
+## 一、webpack 简介
 
 `webpack` 是一个用于现代 `JavaScript` 应用程序的静态模块打包工具。当 `webpack` 处理应用程序时，它会在内部从一个或多个入口点构建一个 依赖图(dependency graph)，然后将你项目中所需的每一个模块组合成一个或多个 bundles，它们均为静态资源，用于展示具体的内容。
 
 ![img7](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img7.png)
 
-## webpack 基本使用
+## 二、webpack 入门
 
-### 一、起步
+### 1.起步
 
 安装 webpack 和 webpack-cli。
 
@@ -99,11 +99,11 @@ export default () => {
 
 全局安装 `serve` 命令， 在当前目录下执行 `serve .` 命令，会启动本地服务器，访问 `http://localhost:3000/` 地址，可以看到页面正常输出。
 
-### 二、配置文件
+### 2.配置文件
 
 `webpack`除了可以通过命令行参数进行配置外，还可以通过在根目录创建 `webpack.config.js` 文件进行一些打包配置。
 
-#### entry & output
+#### 1.1 entry & output
 
 通过配置 `entry` 属性指定入口文件，`output` 属性指定打包后的文件名和路径。
 
@@ -119,7 +119,7 @@ module.exports = {
 };
 ```
 
-#### mode
+#### 1.2 mode
 
 通过配置 `mode` 属性指定打包模式。默认为 `production`。
 
@@ -138,7 +138,7 @@ module.exports = {
 | production  |    生产模式下，Webpack 会自动优化打包结， 压缩、tree shaking     |
 |    none     |   none 模式下，Webpack 就是运行最原始的打包，不做任何额外处理    |
 
-#### loader
+#### 1.3 loader
 
 `webpack` 默认只能打包 js 文件，如果项目中引入了其他文件类型，例如 `css`、`less`、`scss` 、`json`、`html`、`image` 等文件类型，则需要配置不同的 `loader` 来对不同的文件类型进行转换， `loader`可以是同步的，也可以是异步的。
 
@@ -285,7 +285,7 @@ module.exports = {
 }
 ```
 
-#### plugin
+#### 1.4 plugin
 
 `plugin` 是 `webpack` 的强大功能之一，它可以扩展 `webpack` 的功能， 它会运行在 `webpack` 构建流程的不同阶段， 贯穿了 `webpack`的整个编译周期。它可以解决 `loader` 无法实现的一些问题。
 
@@ -470,7 +470,7 @@ module.exports = {
 
 `plugin`的具体的生命周期有很多，可以参考[官方文档](https://www.webpackjs.com/api/compiler-hooks)
 
-#### devServer
+#### 1.5 devServer
 
 `devServer` 提供用于开发的 `HTTP`服务器。集成了实时编译和自动刷新等功能。
 
@@ -529,7 +529,7 @@ module.exports = {
 
 其他的属性还有很多，可以参考[官方文档](https://www.webpackjs.com/configuration/dev-server)。
 
-#### source map
+#### 1.6 source map
 
 `source map` 是一种映射关系，它将编译后的代码映射回源代码，方便开发者调试。
 
@@ -563,7 +563,7 @@ console.log1('error'); // 错误代码
 
 ![img9](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img9.png)
 
-进入 `dist`目录下，使用 `serve .`命令启动本地服务器，访问 `http://localhost:3000/` 地址，可以看到控制台输出了错误信息，以及对应的源代码行信息。
+进入 `dist`目录下，使用 `serve .`命令启动本地服务器，访问 `http://localhost:3000/` 地址，可以看到控制台输出了错误信息，以及对应的源代码的所在的行信息。
 
 ![img13](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img13.png)
 
@@ -610,7 +610,7 @@ module.exports = {
 - 开发模式选择`eval-cheap-source-map`：开发阶段，生成速度较快，错误信息可以映射到行。
 - 生产模式选择 `none`：生成速度最快，不生成 `.map` 文件，不会暴露源代码。
 
-#### HMR
+#### 1.7 HMR
 
 `hmr` 全称 `Hot Module Replacement`，即热模块替换，是 `webpack` 提供的一种在不刷新浏览器的情况下更新模块的功能。
 
@@ -648,4 +648,470 @@ if (module.hot) {
 在 `Webpack 5.x` 中，​ 不需要手动添加 `HotModuleReplacementPlugin`。当你设置 `devServer.hot: true` 时，`Webpack` 会自动启用该插件。
 :::
 
-### 三、webpack 性能优化
+## 三、webpack 进阶
+
+### 1.tree shaking
+
+`tree shaking` 是 `webpack` 提供的一种优化功能，它可以自动删除没有使用的代码，减少打包后的文件大小。具体是通过在 `optimization` 选项中的`usedExports`和 `minimize`配置搭配使用来实现，这个功能在 `production` 模式中默认开启。
+
+下面具体来讲解这两个配置的用法：
+
+首先，在 `src` 目录下创建 `components.js` 文件：
+
+```js
+export const Button = () => {
+  return document.createElement('button');
+
+  console.log('dead-code'); // 无用的代码
+};
+
+export const Link = () => {
+  return document.createElement('a');
+};
+
+export const Heading = (level) => {
+  return document.createElement('h' + level);
+};
+```
+
+在 `main.js` 中只引入 `components.js` 文件中的 `Button` 组件：
+
+```js
+import { Button } from './components';
+
+document.body.appendChild(Button());
+```
+
+`webpack.config.js` 配置中将`mode`设置为 `none`，方便查看变化，同时配置 `entry`、 `output`属性：
+
+```js
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+};
+```
+
+先看一下什么都不配置的打包结果，通过搜索关键字可以发现，无用的代码和未引用的代码也被打包进了最终的结果中，并导入了出去：
+
+![img16](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img16.png)
+
+然后，在 `webpack.config.js` 中配置 `optimization.usedExports` 属性为 `true`：
+
+```js
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+  optimization: {
+    // 模块只导出被使用的成员
+    usedExports: true,
+  },
+};
+```
+
+再次打包，可以看到，无用的代码和未引用的代码还是被打包了进去，只是未引用的代码没有使用，被编辑器标记成了灰色：
+
+![img17](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img17.png)
+
+最后，在 `webpack.config.js` 中配置 `optimization.minimize` 属性为 `true`：
+
+```js
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+  optimization: {
+    // 模块只导出被使用的成员
+    usedExports: true,
+    // 压缩代码，并剔除无用的代码
+    minimize: true,
+  },
+};
+```
+
+再次打包，可以看到，代码进行了压缩和变量替换，通过关键字搜索，没有发现未引用的代码，也没有发现无用的代码。表明 `tree shaking` 功能起作用了。
+
+![img18](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img18.png)
+
+需要注意的是，如果配置了 `babel-loader`，并将代码转换成了其他模块例如 `commonjs`，那么 `tree shaking` 功能将失效，因为 `webpack` 无法识别其他模块的依赖关系。可以**将 `modules` 设置为 `false`，或者使用默认，也就是`auto`来关闭 `ESM` 模块的转换**。
+
+```js
+ module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              // 如果 Babel 加载模块时已经转换了 ESM，则会导致 Tree Shaking 失效
+              // ['@babel/preset-env', { modules: 'commonjs' }]
+              // 可以将 modules 设为 false 或使用默认配置，也就是 auto，这样 babel-loader 会自动关闭 ESM 转换
+              ['@babel/preset-env', { modules: false }]
+              // ['@babel/preset-env', { modules: 'auto' }]
+
+            ]
+          }
+        }
+      }
+    ]
+  },
+```
+
+总结：
+
+- `usedExports` 配置可以让 `webpack` 只导出被使用的成员。可以理解成对未引用的代码进行标记（编辑器的置灰功能）
+- `minimize` 配置可以让 `webpack` 压缩代码，减少文件大小，并剔除无用的代码
+- 如果使用 `babel-loader` 进行了 `ESM` 模块的转化，则会导致 `tree shaking` 失效
+
+### 2.scope hoisting
+
+`scope hoisting` 是指将每个模块合并到同一个模块中。具体是通过在 `optimization` 选项中的`concatenateModules`配置来实现，下面来讲解这个配置的用法：
+
+同样的代码，在 `webpack.config.js` 中将 `optimization.concatenateModules` 属性设置为 `true`：
+
+```js
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+  optimization: {
+    // 合并模块
+    concatenateModules: true,
+  },
+};
+```
+
+再次打包，可以看到，所有的模块被合并到了同一个作用域下，最终的结果简化了不少。
+
+![img21](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img21.png)
+
+### 3.side effects
+
+`side effects` 是 `webpack` 提供的一种优化功能，它可以自动分析模块的依赖关系，并分析出模块的副作用，从而决定是否要将模块打包到一个文件中。具体是通过在 `optimization` 选项中的`sideEffects`配置来实现，这个功能在 `production` 模式中默认开启。
+
+下面具体来讲解这个配置的用法：
+
+首先，在 `src` 目录下创建 `extend.js` 和 `global.css` 文件：
+
+```js
+// 为 Number 的原型添加一个扩展方法
+Number.prototype.pad = function (size) {
+  // 将数字转为字符串 => '8'
+  let result = this + '';
+  // 在数字前补指定个数的 0 => '008'
+  while (result.length < size) {
+    result = '0' + result;
+  }
+  return result;
+};
+```
+
+```css
+body {
+  background-color: #e07474; // 给 body 元素添加背景颜色
+}
+```
+
+在 `main.js` 中引入 `extend.js` 和 `global.css` 文件：
+
+```js
+// 样式文件属于副作用模块
+import './global.css';
+
+// 副作用模块
+import './extend';
+
+console.log((8).pad(3));
+```
+
+`webpack.config.js` 中打开 `sideEffects` 配置：
+
+```js
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  optimization: {
+    sideEffects: true,
+  },
+  plugins: [new HTMLWebpackPlugin()],
+};
+```
+
+然后，在 `package.json` 中声明 `sideEffects` 属性为 `false`：
+
+```json
+{
+  "name": "webpack-demo",
+  "sideEffects": false // 声明 sideEffects 属性为 false
+}
+```
+
+然后打包，运行 `serce ./dist`，启动本地服务器，访问 `http://localhost:3000/` 地址，可以看到控制台输出了错误信息，背景色也没有生效：
+
+![img19](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img19.png)
+
+这是因为在 `package.json` 中声明了 `sideEffects` 属性为 `false`， 表明引入的模块中没有副作用， `webpack`将没有副作用的模块给移除了。为了解决这个问题，需要在 `package.json` 中指定哪些模块有副作用，`sideEffects` 可以设置一个数组，在数组中添加有副作用的模块：
+
+```json
+{
+  "name": "webpack-demo",
+  "sideEffects": ["./src/extend.js", "*.css"] // 声明 具有副作用的模块
+}
+```
+
+再次打包，运行，可以看到，控制台正常输出，背景色也生效了：
+
+![img20](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img20.png)
+
+### 4.code splitting
+
+#### 4.1 muti entry
+
+`webpack` 支持多入口配置，可以配置多个入口文件，生成不同的打包文件
+
+```js
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  mode: 'none',
+  entry: {
+    index: './src/index.js', // 入口文件1
+    album: './src/album.js', // 入口文件2
+  },
+  output: {
+    filename: '[name].bundle.js', // 通过 [name] 占位符来生成不同的文件名
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Multi Entry',
+      template: './src/index.html',
+      filename: 'index.html',
+      chunks: ['index'], // 指定引入的入口文件
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Multi Entry',
+      template: './src/album.html',
+      filename: 'album.html',
+      chunks: ['album'], // 指定引入的入口文件
+    }),
+  ],
+};
+```
+
+打包会生成 `index.bundle.js` 和 `album.bundle.js`，并且分别生成对应的 `index.html` 和 `album.html` 文件：
+
+![img22](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img22.png)
+
+#### 4.2 split chunks
+
+`split chunks` 是 `webpack` 提供的一种优化功能，在进行多入口文件打包时，公共的模块会进行多次打包，`split chunks` 可以将公共的模块提取到单独的 `chunk` 中，具体是通过在 `optimization` 选项中的`splitChunks`配置来实现，这个功能在 `production` 模式中默认开启。
+
+在多入口的基础上增加以下配置：
+
+```js
+  optimization: {
+    splitChunks: {
+      // 自动提取所有公共模块到单独 bundle
+      chunks: 'all'
+    }
+  },
+```
+
+打包结果如下：
+
+![img23](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img23.png)
+
+#### 4.3 dynamic import
+
+`dynamic import` 是 `webpack` 提供的一种异步加载模块的功能，可以实现按需加载，从而减少初始加载时间。
+
+首先，在 `src` 目录下创建 `dynamic.js` 文件：
+
+```js
+export default function () {
+  const element = document.createElement('div');
+  element.innerHTML = 'Dynamically loaded module';
+  document.body.appendChild(element);
+}
+```
+
+在 `main.js` 中并通过点击按钮来异步加载 `dynamic.js` 文件：
+
+```js
+const btn = document.createElement('button');
+btn.textContent = 'click me';
+document.body.appendChild(btn);
+btn.addEventListener('click', () => {
+  import('./dynamic').then((module) => {
+    module.default();
+  });
+});
+```
+
+打包，并启动服务器，访问 `http://localhost:3000/` 地址：
+
+![img24](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img24.png)
+
+点击按钮， `dynamic.js` 文件动态加载进来：
+
+![img25](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img25.png)
+
+### 5. CSS 提取
+
+可以通过 `mini-css-extract-plugin` 插件将`CSS`带阿妈提取到一个单独的文件中。
+
+首先，安装 `mini-css-extract-plugin` 插件：
+
+```zsh
+pnpm i mini-css-extract-plugin -D
+```
+
+然后，在 `webpack.config.js` 中配置 `mini-css-extract-plugin` 插件：
+
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'], // 配置 laoder
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin(), // 配置 mini-css-extract-plugin 插件
+  ],
+};
+```
+
+这样即可将`CSS` 代码提取到单独的文件中。
+
+### 6. CSS 压缩
+
+在进行生产模式打包时，`webpack` 只会将 `js`文件进行压缩，而不会对 `CSS` 文件进行压缩，对于 `CSS` 文件，可以通过 `optimize-css-assets-webpack-plugin` 插件来压缩打包后的 `CSS` 文件。
+
+首先，安装 `optimize-css-assets-webpack-plugin` 插件：
+
+```zsh
+pnpm i optimize-css-assets-webpack-plugin -D
+```
+
+然后，在 `webpack.config.js` 中配置 `optimize-css-assets-webpack-plugin` 插件：
+
+```js
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+module.exports = {
+  mode: 'production',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'], // 配置 laoder
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin(), // 配置 mini-css-extract-plugin 插件
+    new OptimizeCSSAssetsPlugin(), // 配置 optimize-css-assets-webpack-plugin 插件
+  ],
+};
+```
+
+打包，`CSS` 文件可以被压缩。
+
+当然也可以配置在 `optimization` 中的 `minimizer` 属性中，即只有开启了 `minimizer` 才会进行压缩：
+
+```js
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  mode: 'production',
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'], // 配置 laoder
+      },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      `...`, //  使用 `...` 语法，扩展现有的 minimizer，（即 `terser-webpack-plugin`）
+      new OptimizeCSSAssetsPlugin(), // 配置 optimize-css-assets-webpack-plugin 插件
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin(), // 配置 mini-css-extract-plugin 插件
+  ],
+};
+```
+
+这样就只有在生产模式下才会进行压缩，其他模式下不会进行压缩，和 `js` 代码保持一致。
+
+### 7. 文件名 Hash
+
+在生产模式下，`webpack` 会对生成的文件名进行哈希，这样可以让文件的过期时间设置长一些，文件名发生变化时，浏览器会重新请求文件，从而避免缓存问题。
+
+可以通过 `output.filename` 配置项中的 `[hash]` 占位符来实现：
+
+```js
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    filename: '[name].[hash].js', // 使用 [hash] 占位符来生成哈希文件名
+  },
+};
+```
+
+`hash` 有三种：
+
+**hash**
+
+普通 `hash` 是项目级别的，每一个文件的 `hash` 都是相同，当有任何一个文件发生改变，整个项目的 `hash` 都会改变。
+
+**chunkhash**
+
+`chunkhash` 是 `chunk`级别的，`hash`，每一个 `chunk` 中的文件 `hash` 都是相同的，当某一个文件发生改变，对应的`chunk`下的每个文件的 `hash` 都会改变，不会影响到其他 `chunk`。
+
+**contenthash**
+
+`contenthash` 是文件级别的，`hash`，每一个文件中的内容 `hash` 都不相同，当文件内容发生改变，对应的文件的 `hash` 都会改变。
