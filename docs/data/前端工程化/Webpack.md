@@ -979,7 +979,7 @@ btn.addEventListener('click', () => {
 
 ![img25](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/img25.png)
 
-### 5. CSS 提取
+### 5. css extract
 
 可以通过 `mini-css-extract-plugin` 插件将`CSS`带阿妈提取到一个单独的文件中。
 
@@ -1016,7 +1016,7 @@ module.exports = {
 
 这样即可将`CSS` 代码提取到单独的文件中。
 
-### 6. CSS 压缩
+### 6. css minimize
 
 在进行生产模式打包时，`webpack` 只会将 `js`文件进行压缩，而不会对 `CSS` 文件进行压缩，对于 `CSS` 文件，可以通过 `optimize-css-assets-webpack-plugin` 插件来压缩打包后的 `CSS` 文件。
 
@@ -1087,7 +1087,7 @@ module.exports = {
 
 这样就只有在生产模式下才会进行压缩，其他模式下不会进行压缩，和 `js` 代码保持一致。
 
-### 7. 文件名 Hash
+### 7. hash
 
 在生产模式下，`webpack` 会对生成的文件名进行哈希，这样可以让文件的过期时间设置长一些，文件名发生变化时，浏览器会重新请求文件，从而避免缓存问题。
 
