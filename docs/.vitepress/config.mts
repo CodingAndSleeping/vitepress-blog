@@ -41,7 +41,7 @@ export default defineConfig({
       {
         text: '后端知识',
         items: [
-          { text: 'Node', link: '/BackEnd/Node/' },
+          { text: 'Node', link: '/BackEnd/Node/node_study1' },
           { text: 'Nest', link: '/BackEnd/Nest/' },
           { text: 'Express', link: '/BackEnd/Express/' },
           { text: 'Mysql', link: '/BackEnd/Mysql/' },
@@ -72,6 +72,16 @@ export default defineConfig({
     ],
 
     sidebar: {
+      '/BackEnd/Node/': [
+        {
+          text: 'Node.js(介绍)',
+          link: '/BackEnd/Node/node_study1',
+        },
+        {
+          text: 'Node.js(npm)',
+          link: '/BackEnd/Node/node_study2',
+        },
+      ],
       '/前端工程化/': [
         {
           text: '模块化',

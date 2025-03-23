@@ -1,0 +1,242 @@
+# Node.js（npm）
+
+## 一、npm 介绍
+
+`npm` （全称 `Node Package Manager`）是 `Node.js` 的包管理工具，它是一个基于命令行的工具，用于帮助开发者在自己的项目中安装、升级、移除和管理依赖项。
+
+## 二、npm 配置镜像源
+
+### 1.手动配置
+
+查看当前镜像源：
+
+```zsh
+npm config get registry
+```
+
+设置为淘宝镜像源：
+
+```zsh
+npm config set registry  https://registry.npmmirror.com/
+```
+
+### 2.使用 nrm 工具
+
+`nrm` 是一个 npm 镜像源管理工具，可以方便地切换 npm 源。
+
+安装：
+
+```zsh
+npm install -g nrm
+```
+
+查看当前镜像源：
+
+```zsh
+nrm ls
+```
+
+切换镜像源：
+
+```zsh
+nrm use taobao
+```
+
+::: tip
+在发布 npm 包时，建议切换回官方源，否则可能会发布失败。
+:::
+
+## 三、npm 常用命令
+
+- `npm init`: 初始化一个新的 `package.json` 文件 通常配合 `-y` 参数使用默认配置。
+
+- `npm install`: 安装 `package.json` 文件中列出的依赖包, 也可以使用 `npm i` 简写。
+
+- `npm install <package-name>`: 安装指定的依赖包。
+
+- `npm install <package-name> -g`: 全局安装指定的依赖包。
+
+- `npm install <package-name> -save`: 安装指定的包到 `dependencies` 中， 也可以使用 `-S` 简写。
+
+- `npm install <package-name> --save-dev`: 安装指定的依赖包并将其添加到 `devDependencies` 中， 也可以使用 `-D` 简写。
+
+- `npm run <script-name>`: 执行 `package.json` 文件中定义的脚本。
+
+- `npm update`: 更新所有依赖包。
+
+- `npm update <package-name>`: 更新指定的依赖包。
+
+- `npm uninstall <package-name>`: 卸载指定的依赖包。
+
+- `npm info <package-name>`: 查看指定依赖包的信息。
+
+- `npm list`: 查看所有依赖包的版本信息。
+
+- `npm outdated`: 查看需要更新的依赖包。
+
+- `npm audit`: 检查依赖包是否存在安全漏洞。
+
+- `npm login`: 登录 `npm` 账号。
+
+- `npm logout`: 退出 `npm` 账号。
+
+- `npm whoami`: 查看当前登录的 `npm` 账号。
+
+- `npm publish`: 发布 `npm` 包。
+
+- `npm link`: 将当前包链接到全局环境中。
+
+- `npm config list`: 查看 `npm` 配置信息，执行该命令可以查看当前系统和用户级别的所有 `npm` 配置信息，以及当前项目的配置信息（如果在项目目录下执行该命令）。
+
+- `npm get registry`: 查看当前镜像源。
+
+- `npm config set registry <registry-url>`: 设置镜像源。
+
+## 四、package.json 文件
+
+`package.json` 文件是 `npm` 包的描述文件，用于描述项目的依赖关系、脚本等信息。其中，字段包含官方和非官方字段，下面就常用的字段进行介绍：
+
+### 1.基本配置
+
+- `name`: 包名，必须在`npm`上是唯一的。
+
+- `version`: 版本号，格式为：[主要版本号].[次要版本号].[补丁版本号]。
+
+- `description`: 包的描述信息。
+
+- `keywords`: 关键字，用于搜索。
+
+- `author`: 作者信息。
+
+- `license`: 开源协议。
+
+- `repository`: 代码仓库地址。
+
+- `homepage`: 项目主页地址。
+
+- `bugs`: 项目问题反馈地址。
+
+- `contributors`: 项目贡献者。
+
+- `type`: 指定模块系统的使用方式。默认为 `commonjs`, 该模块下，项目中的 `js`文件默认为 `commonjs`模块，需要将文件名后缀改为 `.mjs`来支持 `ESM`模块。如果改为 `module`，则项目中的 `js`文件默认为`ESM`模块， 需要将文件名后缀改为 `.cjs`来支持 `commonjs` 模块。
+
+### 2.依赖配置
+
+- `dependencies`: 生产环境的依赖包，项目运行时需要的依赖包。
+
+- `devDependencies`: 开发环境的依赖包，项目开发时需要的依赖包，这些包不会被打包到生产环境中。
+
+- `peerDependencies`: 同级依赖，即项目所需要的模块被其他模块所依赖（期望该项目的使用者来提供这些模块的依赖）。例如：`react`组件库的使用者一般都会安装 `react` 和 `react-dom` 两个依赖包，因此开发的组件库中不必把 `react` 和 `react-dom` 打包进去。
+
+- `engines`: 指定项目所依赖的 `node` 和 `npm` 版本要求。
+
+:::tip 版本号规则
+
+- `^`: 表示保持主版本号不变，只更新到次要版本号和补丁版本号。 如 `^1.2.3` 表示只更新到 `1.x.x` 版本。
+- `~`: 表示只更新到补丁版本号，只更新到补丁版本号。 如 `~1.2.3` 表示只更新到 `1.2.x` 版本。
+- `*`: 表示任意版本。
+- `1.2.3`: 表示指定版本。
+- `>`、`>=`、`<`、`<=`：指定版本范围。例如：`>=1.2.3` 表示大于等于 `1.2.3` 版本。
+  :::
+
+### 3.脚本配置
+
+- `scripts`: 定义项目的脚本命令，可以执行一些自动化任务。
+
+- `config`: 用于定义项目的配置项，例如设置环境变量。定义的变量使用`process.env.npm_package_config_XXX`取值
+
+### 4.发布配置
+
+- `private`: 用于标识是否发布到 `npm` 服务器，设置为 `true` 则不允许发布。
+
+- `main`: 项目的入口文件，如果不指定该字段，默认是根目录下的 `index.js`。
+
+- `browser`: 指定浏览器环境下的模块入口文件，通常配置打包后的浏览器模块文件位置。
+
+- `module（非官方）`: 指定`ESM`模块的入口文件，通常配置打包后的`ESM`模块文件位置。
+
+- `unpkg（非官方）`: 指定基于 `CDN`服务的入口文件，用于在浏览器环境中使用`script`标签引入。
+
+- `types（非官方）`: 指定`TypeScript`类型定义文件。
+
+- `exports（非官方）`: 指定模块的导出规则，用于配置模块的导出方式。
+
+当指定了 `exports`字段时， `package.json` 中的 `main`、`browser`、`module`、`unpkg`、`types`字段将失效。
+
+配置方式：
+
+```json
+{
+  ...
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js", // 指定了 ES module (ESM) 规范下的导出文件路径
+      "require": "./dist/index.cjs.js",// 指定了 CommonJS 规范下的导出文件路径
+      "browser": "./dist/index.umd.js", // 指定了用于浏览器环境的导出文件路径
+      "types": "./dist/index.d.ts" //指定了类型声明文件的路径
+    }
+  }
+  ...
+}
+```
+
+- `files`: 指定哪些文件或文件夹被推送到 `npm` 服务器中
+
+- `publishConfig`: 发布配置，用于配置发布到 `npm` 服务器的一些参数。
+
+- `browserslist`: 指定浏览器兼容性配置。
+
+## 五、package-lock.json 文件
+
+`package-lock.json` 文件主要是用于锁定项目依赖版本号，记录依赖树信息。
+
+具体字段说明：
+
+- `version`：实际安装的版本；
+- `resolved`：包下载的地址；
+- `integrity`：用于安全校验的哈希值，确保下载的包与发布的包一致；
+- `dependencies`：当前包依赖的所有包的版本信息；
+- `engines`：当前包运行需要的 Node 版本。
+
+此外，`package-lock.json` 还帮我们做了缓存，他通过 `name` + `version` + `intergrity` 信息生成一个唯一和 `hash` 值，并缓存到 `npm-cache` 目录下，下载的时候优先从缓存中查找，如果找到就将对应的二进制文件解压到 `node_modules` 目录下，避免重复下载。
+
+## 六、.npmrc 文件
+
+`.npmrc` 文件是 `npm` 的配置文件，它包含了一些 `npm` 的配置信息，比如代理、镜像、命令别名等。通过修改 `.npmrc` 文件，可以更改 `npm` 的默认行为。
+
+常用的配置：
+
+```zsh
+# 定义npm的registry，即npm的包下载源
+registry=http://registry.npmjs.org/
+
+# 定义npm的代理服务器，用于访问网络
+proxy=http://proxy.example.com:8080/
+
+# 定义npm的https代理服务器，用于访问网络
+https-proxy=http://proxy.example.com:8080/
+
+# 是否在SSL证书验证错误时退出
+strict-ssl=true
+
+# 定义自定义CA证书文件的路径
+cafile=/path/to/cafile.pem
+
+# 自定义请求头中的User-Agent
+user-agent=npm/{npm-version} node/{node-version} {platform}
+
+# 安装包时是否自动保存到package.json的dependencies中
+save=true
+
+# 安装包时是否自动保存到package.json的devDependencies中
+save-dev=true
+
+# 安装包时是否精确保存版本号
+save-exact=true
+
+# 是否在安装时检查依赖的node和npm版本是否符合要求
+engine-strict=true
+
+# 是否在运行脚本时自动将node的路径添加到PATH环境变量中
+scripts-prepend-node-path=true
+```
