@@ -81,6 +81,14 @@ export default defineConfig({
           text: 'Node.js(npm)',
           link: '/BackEnd/Node/node_study2',
         },
+        {
+          text: 'Node.js(全局变量)',
+          link: '/BackEnd/Node/node_study3',
+        },
+        {
+          text: 'Node.js(path)',
+          link: '/BackEnd/Node/node_study4',
+        },
       ],
       '/前端工程化/': [
         {
@@ -96,6 +104,10 @@ export default defineConfig({
         {
           text: '事件循环',
           link: '/浏览器/事件循环',
+        },
+        {
+          text: '浏览器缓存',
+          link: '/浏览器/浏览器缓存机制',
         },
         {
           text: '网络通信',
