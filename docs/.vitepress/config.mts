@@ -50,7 +50,7 @@ export default defineConfig({
       },
       {
         text: '手撕代码',
-        link: '/CodeTear/',
+        link: '/CodeTear/new',
       },
       {
         text: '源码学习',
@@ -181,12 +181,44 @@ export default defineConfig({
           link: '/TechBlogs/Others/简易版虚拟滚动',
         },
       ],
-      // '/CodeTear/': [
-      //   {
-      //     text: 'JS',
-      //     link: '/CodeTear/JS/',
-      //   },
-      // ],
+      '/CodeTear/': [
+        {
+          text: 'new',
+          link: '/CodeTear/new',
+        },
+        {
+          text: 'instanceof',
+          link: '/CodeTear/instanceof',
+        },
+        {
+          text: 'bind-apply-call',
+          link: '/CodeTear/bind-apply-call',
+        },
+        {
+          text: 'deepclone',
+          link: '/CodeTear/deepclone',
+        },
+        {
+          text: 'debounce',
+          link: '/CodeTear/debounce',
+        },
+        {
+          text: 'throttle',
+          link: '/CodeTear/throttle',
+        },
+        {
+          text: 'promise',
+          link: '/CodeTear/promise',
+        },
+        {
+          text: 'lazyBoy',
+          link: '/CodeTear/lazyBoy',
+        },
+        {
+          text: 'durstenfeld(洗牌算法)',
+          link: '/CodeTear/durstenfeld',
+        },
+      ],
     },
     outline: {
       level: [2, 4],

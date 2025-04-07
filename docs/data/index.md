@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "编程知识小屋"
-  # text: 
+  name: '编程知识小屋'
+  # text:
   tagline: 分享笔记、博客、心得
   # actions:
   #   - theme: brand
@@ -22,4 +22,3 @@ features:
   - title: 心路历程
     details: Mental Process
 ---
-
