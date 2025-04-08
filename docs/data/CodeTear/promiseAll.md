@@ -1,0 +1,39 @@
+## 手写 Promise.all 和 Promise.race
+
+```javascript
+function myPromiseAll(promises) {
+  return new Promise((reslove, reject) => {
+    const allRes = [];
+    let count = 0;
+
+    promises.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then((res) => {
+          allRes[index] = res;
+          count++;
+          // 当promises数组中的所有promise都成功后，才会执行reslove
+          if (count === promises.length) {
+            reslove(allRes);
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  });
+}
+
+function myPromiseRace(promises) {
+  return new Promise((reslove, reject) => {
+    promises.forEach((promise, idnex) => {
+      Promise.resolve(promise)
+        .then((res) => {
+          reslove(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  });
+}
+```

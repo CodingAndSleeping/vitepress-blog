@@ -183,40 +183,52 @@ export default defineConfig({
       ],
       '/CodeTear/': [
         {
-          text: 'new',
+          text: '手写new',
           link: '/CodeTear/new',
         },
         {
-          text: 'instanceof',
+          text: '手写instanceof',
           link: '/CodeTear/instanceof',
         },
         {
-          text: 'bind-apply-call',
+          text: '手写bind-apply-call',
           link: '/CodeTear/bind-apply-call',
         },
         {
-          text: 'deepclone',
+          text: '手写deepclone',
           link: '/CodeTear/deepclone',
         },
         {
-          text: 'debounce',
+          text: '手写debounce',
           link: '/CodeTear/debounce',
         },
         {
-          text: 'throttle',
+          text: '手写throttle',
           link: '/CodeTear/throttle',
         },
         {
-          text: 'promise',
+          text: '手写promise',
           link: '/CodeTear/promise',
         },
         {
-          text: 'lazyBoy',
+          text: '手写lazyBoy',
           link: '/CodeTear/lazyBoy',
         },
         {
-          text: 'durstenfeld(洗牌算法)',
-          link: '/CodeTear/durstenfeld',
+          text: '手写洗牌算法',
+          link: '/CodeTear/durstenfeldShuffle',
+        },
+        {
+          text: '手写Promise.all/race',
+          link: '/CodeTear/promiseAll',
+        },
+        {
+          text: '求数组除自身以外乘积',
+          link: '/CodeTear/productExceptSelf',
+        },
+        {
+          text: '扁平化数组',
+          link: '/CodeTear/flattenArr',
         },
       ],
     },

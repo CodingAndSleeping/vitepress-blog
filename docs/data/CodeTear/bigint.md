@@ -1,0 +1,30 @@
+## 大数相加
+
+```javascript
+function bigIntAdd(a, b) {
+  let num1 = a.split('').map(Number);
+  let num2 = b.split('').map(Number);
+  // 确保 num1的长度 大于 num2的长度
+  if (num1.length < num2.length) {
+    [num1, num2] = [num2, num1];
+  }
+  let res = [];
+  let nextNum = 0;
+  for (let i = 0; i < num1.length; i++) {
+    let digit1 = num1[num1.length - 1 - i];
+    let digit2 = i >= num2.length ? 0 : num2[num2.length - 1 - i];
+    let add = digit1 + digit2 + nextNum;
+    nextNum = Math.floor(add / 10);
+    let currentNum = add % 10;
+    res.unshift(currentNum);
+  }
+
+  if (nextNum) {
+    res.unshift(nextNum);
+  }
+
+  return res.join('');
+}
+
+console.log(bigIntAdd('12345678901234567890', '98765432109876543210')); // 输出：111111111011111111100
+```

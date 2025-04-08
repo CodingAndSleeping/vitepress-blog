@@ -4,13 +4,13 @@
 function lazyBoy(name) {
   class LazyBoy {
     tasks = [];
-
     constructor(name) {
       this.tasks.push(() => {
         console.log(`我是${name}`);
         this.run();
       });
 
+      // 这里是关键，使用setTimeout把run方法的执行变成异步任务
       setTimeout(() => {
         this.run();
       }, 0);

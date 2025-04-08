@@ -1,4 +1,4 @@
-## 手写防抖节流(debounce/throttle)
+## 手写防抖
 
 ### debounce
 
