@@ -113,6 +113,10 @@ export default defineConfig({
           text: '网络通信',
           link: '/浏览器/网络通信',
         },
+        {
+          text: '跨标签页通信',
+          link: '/浏览器/跨标签页通信',
+        },
       ],
 
       '/TechBlogs/GIS': [
