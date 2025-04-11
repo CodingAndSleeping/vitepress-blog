@@ -171,21 +171,21 @@ module.exports = {
 
 下面介绍一些常用的 `loader`：
 
-• `css-loader`： 将`CSS` 文件用 `require` 的方式引入，并返回一个 css 代码
+- `css-loader`： 将`CSS` 文件用 `require` 的方式引入，并返回一个 css 代码
 
-• `style-loader`：将 `CSS` 代码注入到 `HTML` 页面中，通过 `<style>` 标签添加样式
+- `style-loader`：将 `CSS` 代码注入到 `HTML` 页面中，通过 `<style>` 标签添加样式
 
-• `less-loader`：用于加载和转换 `less` 文件
+- `less-loader`：用于加载和转换 `less` 文件
 
-• `sass-loader`：用于加载和转换 `sass` 文件
+- `sass-loader`：用于加载和转换 `sass` 文件
 
-• `file-loader`： 用于处理文件，例如图片、字体等
+- `file-loader`： 用于处理文件，例如图片、字体等
 
-• `url-loader`：用于处理文件，并将它们转为 `base64` 编码，减少请求数量
+- `url-loader`：用于处理文件，并将它们转为 `base64` 编码，减少请求数量
 
-• `babel-loader`：用于加载和转换 `ES6` 代码，将其转换为浏览器可以识别的代码
+- `babel-loader`：用于加载和转换 `ES6` 代码，将其转换为浏览器可以识别的代码
 
-• `html-loader`：用于加载和转换 `HTML` 文件
+- `html-loader`：用于加载和转换 `HTML` 文件
 
 常用的 `loader` 配置示例：
 

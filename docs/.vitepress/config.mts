@@ -89,6 +89,14 @@ export default defineConfig({
           text: 'Node.js(path)',
           link: '/BackEnd/Node/node_study4',
         },
+        {
+          text: 'Node.js(os)',
+          link: '/BackEnd/Node/node_study5',
+        },
+        {
+          text: 'Node.js(process)',
+          link: '/BackEnd/Node/node_study6',
+        },
       ],
       '/前端工程化/': [
         {

@@ -1,0 +1,126 @@
+# Nodejs（os）
+
+`os`模块可以跟操作系统交互。
+
+## os.type()
+
+返回操作系统类型。
+
+- linux: 返回 `Linux`
+- macOS: 返回 `Darwin`
+- windows: 返回 `Windows_NT`
+
+## os.platform()
+
+返回一个字符串，标识为其编译 `Node.js` 二进制文件的操作系统平台。该值在编译时设置。可能的值为`aix`， `darwin`， `freebsd`，`linux`， `openbsd`， `sunos`和`win32`。
+
+## os.release()
+
+返回操作系统版本
+
+## os.homedir()
+
+返回当前用户的主目录。
+
+## os.arch()
+
+返回操作系统架构，可能的值为 `arm`、`arm64`、`ia32`、`mips`、`mipsel`、`ppc`、`ppc64`、`s390`、`s390x`、以及 `x64`
+
+## os.cpus()
+
+返回一个数组，包含了当前计算机的每个 CPU/核心的信息。
+
+```javascript
+[
+  {
+    model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times: {
+      user: 252020,
+      nice: 0,
+      sys: 30340,
+      idle: 1070356870,
+      irq: 0,
+    },
+  },
+  {
+    model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times: {
+      user: 306960,
+      nice: 0,
+      sys: 26980,
+      idle: 1071569080,
+      irq: 0,
+    },
+  },
+  ...
+]
+```
+
+- `model`: 表示 `CPU` 的型号信息，其中 "Intel(R) Core(TM) i7 CPU 860 @ 2.80GHz" 是一种具体的型号描述。
+
+- `speed`: 表示 `CPU` 的时钟速度，以 `MHz` 或 `GHz` 为单位。在这种情况下，速度为 `2926 MHz` 或 `2.926 GHz`。
+
+- `times`: 是一个包含 `CPU` 使用时间的对象，其中包含以下属性：
+- `user`: 表示 `CPU` 被用户程序使用的时间（以毫秒为单位）。
+- `nice`: 表示 `CPU` 被优先级较低的用户程序使用的时间（以毫秒为单位）。
+- `sys`: 表示 `CPU` 被系统内核使用的时间（以毫秒为单位）。
+- `idle`: 表示 `CPU` 处于空闲状态的时间（以毫秒为单位）。
+- `irq`: 表示 `CPU` 被硬件中断处理程序使用的时间（以毫秒为单位）。
+
+## os.networkInterfaces()
+
+返回一个对象，包含了网络接口的信息。
+
+```javascript
+{
+  lo: [
+    {
+      address: '127.0.0.1',
+      netmask: '255.0.0.0',
+      family: 'IPv4',
+      mac: '00:00:00:00:00:00',
+      internal: true,
+      cidr: '127.0.0.1/8'
+    },
+    {
+      address: '::1',
+      netmask: 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
+      family: 'IPv6',
+      mac: '00:00:00:00:00:00',
+      scopeid: 0,
+      internal: true,
+      cidr: '::1/128'
+    }
+  ],
+  eth0: [
+    {
+      address: '192.168.1.108',
+      netmask: '255.255.255.0',
+      family: 'IPv4',
+      mac: '01:02:03:0a:0b:0c',
+      internal: false,
+      cidr: '192.168.1.108/24'
+    },
+    {
+      address: 'fe80::a00:27ff:fe4e:66a1',
+      netmask: 'ffff:ffff:ffff:ffff::',
+      family: 'IPv6',
+      mac: '01:02:03:0a:0b:0c',
+      scopeid: 1,
+      internal: false,
+      cidr: 'fe80::a00:27ff:fe4e:66a1/64'
+    }
+  ]
+}
+```
+
+- `lo0`: 表示本地回环接口。
+- `en0`: 表示以太网接口。
+- `address`: 表示 `IP` 地址。
+- `netmask`: 表示子网掩码。
+- `family`: 表示 `IP` 地址的类型，可能的值为 `IPv4` 或 `IPv6`。
+- `mac`: 表示 MAC 地址。
+- `internal`: 表示是否为内部接口。
+- `cidr`: 表示 `IP` 地址和子网掩码的组合。
