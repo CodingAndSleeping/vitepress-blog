@@ -132,6 +132,10 @@ export default defineConfig({
           text: 'OSI七层网络模型',
           link: '/网络通信/OSI七层网络模型',
         },
+        {
+          text: 'TCP三次握手与四次挥手',
+          link: '/网络通信/TCP三次握手与四次挥手',
+        },
       ],
 
       '/TechBlogs/GIS': [
