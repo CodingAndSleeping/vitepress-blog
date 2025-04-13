@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress';
+import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -61,10 +61,10 @@ export default defineConfig({
           },
         ],
       },
-      {
-        text: '算法学习',
-        link: '/Algorithm/',
-      },
+      // {
+      //   text: '算法学习',
+      //   link: '/Algorithm/',
+      // },
       {
         text: '浏览器',
         link: '/浏览器/事件循环/',
@@ -242,18 +242,20 @@ export default defineConfig({
           text: '扁平化数组',
           link: '/CodeTear/flattenArr',
         },
+        {
+          text: '红绿灯',
+          link: '/CodeTear/red-green-light',
+        },
       ],
     },
     outline: {
       level: [2, 4],
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/CodingAndSleeping' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/CodingAndSleeping' }],
 
     search: {
       provider: 'local',
     },
   },
-});
+})
