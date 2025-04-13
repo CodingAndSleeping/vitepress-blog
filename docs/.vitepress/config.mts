@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -69,6 +69,10 @@ export default defineConfig({
         text: '浏览器',
         link: '/浏览器/事件循环/',
       },
+      {
+        text: '网络通信',
+        link: '/网络通信/OSI七层网络模型',
+      },
     ],
 
     sidebar: {
@@ -117,13 +121,16 @@ export default defineConfig({
           text: '浏览器缓存',
           link: '/浏览器/浏览器缓存机制',
         },
-        {
-          text: '网络通信',
-          link: '/浏览器/网络通信',
-        },
+
         {
           text: '跨标签页通信',
           link: '/浏览器/跨标签页通信',
+        },
+      ],
+      '/网络通信/': [
+        {
+          text: 'OSI七层网络模型',
+          link: '/网络通信/OSI七层网络模型',
         },
       ],
 
@@ -252,10 +259,12 @@ export default defineConfig({
       level: [2, 4],
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/CodingAndSleeping' }],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/CodingAndSleeping' },
+    ],
 
     search: {
       provider: 'local',
     },
   },
-})
+});
