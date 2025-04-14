@@ -137,6 +137,10 @@ export default defineConfig({
           link: '/网络通信/DNS解析规则',
         },
         {
+          text: 'OPTIONS 预检请求',
+          link: '/网络通信/OPTIONS预检请求',
+        },
+        {
           text: '浏览器缓存',
           link: '/网络通信/浏览器缓存机制',
         },
