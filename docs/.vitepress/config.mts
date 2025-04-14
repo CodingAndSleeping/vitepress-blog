@@ -136,6 +136,10 @@ export default defineConfig({
           text: 'TCP三次握手与四次挥手',
           link: '/网络通信/TCP三次握手与四次挥手',
         },
+        {
+          text: 'DNS 解析规则',
+          link: '/网络通信/DNS解析规则',
+        },
       ],
 
       '/TechBlogs/GIS': [
