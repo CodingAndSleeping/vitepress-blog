@@ -117,10 +117,6 @@ export default defineConfig({
           text: '事件循环',
           link: '/浏览器/事件循环',
         },
-        {
-          text: '浏览器缓存',
-          link: '/浏览器/浏览器缓存机制',
-        },
 
         {
           text: '跨标签页通信',
@@ -139,6 +135,10 @@ export default defineConfig({
         {
           text: 'DNS 解析规则',
           link: '/网络通信/DNS解析规则',
+        },
+        {
+          text: '浏览器缓存',
+          link: '/网络通信/浏览器缓存机制',
         },
       ],
 
