@@ -55,7 +55,7 @@
 
 `HTTP2.0`中在客户端和服务端之间使用 首部表 来跟踪和存储之前发送的请求和响应的相关信息，对于相同的数据，可以只发送一次首部，减少开销。
 
-![20250416010018](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/20250416010018.png)
+![20250416010810](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/20250416010810.png)
 
 首部表 在 `HTTP2.0` 的连接期间一直存在，有客户端和服务端共同渐进式更新。
 
