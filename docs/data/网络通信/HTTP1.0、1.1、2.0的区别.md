@@ -41,7 +41,7 @@
 
 ![20250416004229](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/20250416004229.png)
 
-上图中，可以看出 `css`、`js` 资源是同事发给服务器的，可以并行传输。这就是多路复用。
+上图中，可以看出 `css`、`js` 资源是同时发给服务器的，可以并行传输。这就是多路复用。
 
 ### 二进制分帧
 
