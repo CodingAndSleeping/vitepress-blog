@@ -180,6 +180,11 @@ export default defineConfig({
           text: '浏览器缓存',
           link: '/网络通信/浏览器缓存机制',
         },
+
+        {
+          text: 'HTTP1.0、1.1、2.0的区别',
+          link: '/网络通信/HTTP1.0、1.1、2.0的区别',
+        },
       ],
 
       // '/TechBlogs/GIS': [
