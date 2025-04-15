@@ -44,7 +44,7 @@ export default defineConfig({
           { text: 'Node', link: '/BackEnd/Node/node_study1' },
           { text: 'Nest', link: '/BackEnd/Nest/' },
           { text: 'Express', link: '/BackEnd/Express/' },
-          { text: 'Mysql', link: '/BackEnd/Mysql/' },
+          { text: 'Mysql', link: '/BackEnd/MySQL/' },
           { text: 'Java', link: '/BackEnd/Java/' },
         ],
       },
