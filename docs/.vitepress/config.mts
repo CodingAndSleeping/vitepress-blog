@@ -101,6 +101,18 @@ export default defineConfig({
           text: 'Node.js(process)',
           link: '/BackEnd/Node/node_study6',
         },
+        {
+          text: 'Node.js(child_process)',
+          link: '/BackEnd/Node/node_study7',
+        },
+        {
+          text: 'Node.js(events)',
+          link: '/BackEnd/Node/node_study8',
+        },
+        {
+          text: 'Node.js(util)',
+          link: '/BackEnd/Node/node_study9',
+        },
       ],
       '/前端工程化/': [
         {
