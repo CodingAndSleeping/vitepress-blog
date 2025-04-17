@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-
+import { fileURLToPath, URL } from 'node:url';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/vitepress-blog/',
@@ -12,17 +12,6 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     logo: '/favicon.svg',
     nav: [
-      // { text: '主页', link: '/' },
-      // // {
-      //   text: '技术博客',
-      //   link: '/TechBlogs/Others/常用git指令总结.md',
-      //   // [
-      //   //   { text: 'GIS', link: '/TechBlogs/GIS/' },
-      //   //   { text: 'Electron', link: '/TechBlogs/Electron/' },
-      //   //   { text: '其他', link: '/TechBlogs/Others/' },
-      //   // ],
-      // },
-
       {
         text: '前端知识',
         items: [
@@ -61,10 +50,7 @@ export default defineConfig({
           },
         ],
       },
-      // {
-      //   text: '算法学习',
-      //   link: '/Algorithm/',
-      // },
+
       {
         text: '浏览器',
         link: '/浏览器/事件循环/',
@@ -78,19 +64,19 @@ export default defineConfig({
         text: '个人项目',
         items: [
           {
-            text: '🔥 react 练习广场',
+            text: 'react 练习广场 🔥',
             link: 'https://codingandsleeping.github.io/react-playground/',
             target: '_blank',
             rel: 'sponsored',
           },
           {
-            text: '🔥 babel 插件练习广场',
+            text: 'babel 插件练习广场 🔥',
             link: 'https://codingandsleeping.github.io/babel-plugin-playground/',
             target: '_blank',
             rel: 'sponsored',
           },
           {
-            text: '🔥 地图组件库',
+            text: '地图组件库 🔥',
             link: 'https://codingandsleeping.github.io/react-mapboxgl-zt/',
             target: '_blank',
             rel: 'sponsored',
@@ -318,6 +304,19 @@ export default defineConfig({
 
     search: {
       provider: 'local',
+    },
+  },
+
+  vite: {
+    resolve: {
+      alias: [
+        {
+          find: /^.*\/VPHome\.vue$/,
+          replacement: fileURLToPath(
+            new URL('./theme/components/home.vue', import.meta.url),
+          ),
+        },
+      ],
     },
   },
 });
