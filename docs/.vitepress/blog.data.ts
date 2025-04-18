@@ -6,6 +6,8 @@ type Data = {
   // 页面的映射 URL，如 /posts/hello.html（不包括 base）
   // 手动迭代或使用自定义 `transform` 来标准化路径
   title: string;
+  desc: string;
+  label: string[];
   url: string;
   date: {
     time: number;
@@ -21,12 +23,20 @@ export default createContentLoader('/**/*.md', {
   excerpt: false, // 包含摘录?
   transform(raw): Data[] {
     return raw
-      .map(({ url, frontmatter, excerpt }) => ({
+      .filter(({ frontmatter }) => frontmatter.title)
+      .map(({ url, frontmatter }) => ({
         title: frontmatter.title,
+        desc: frontmatter.desc,
+        label: frontmatter.label,
+        top: frontmatter.top || false,
         url,
         date: formatDate(frontmatter.date),
       }))
-      .sort((a, b) => b.date.time - a.date.time);
+      .sort((a, b) => {
+        if (a.top && !b.top) return -1;
+        if (!a.top && b.top) return 1;
+        return b.date.time - a.date.time; // r
+      });
   },
 });
 

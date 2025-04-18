@@ -229,23 +229,23 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
   '/其他/': [
     {
       text: '地图组件库',
-      link: '/Others/react+mapboxgl地图文档',
+      link: '/其他/react+mapboxgl地图文档',
     },
     {
       text: 'mapserver地图切片',
-      link: '/Others/基于mapserver的切片缓存服务配置（mapchache.xml文件）',
+      link: '/其他/基于mapserver的切片缓存服务配置（mapchache.xml文件）',
     },
     {
       text: '一个简单的虚拟滚动',
-      link: '/Others/简易版虚拟滚动',
+      link: '/其他/简易版虚拟滚动',
     },
     {
       text: '简述浏览器中的位置',
-      link: '/Others/浏览器中的位置信息',
+      link: '/其他/浏览器中的位置信息',
     },
     {
       text: 'js小工具',
-      link: '/Others/js小工具',
+      link: '/其他/js小工具',
     },
   ],
 };
