@@ -1,0 +1,174 @@
+---
+title: 一个基于 React + MapboxGL 的地图组件库
+desc: 一个基于 React + MapboxGL 的地图组件库。
+label:
+  - react
+  - GIS
+data: 2025-03-27
+top: true
+---
+
+**🔥🔥🔥 先贴文档地址：**<https://codingandsleeping.github.io/react-mapboxgl-zt>
+
+## 📖 简介
+
+- `React` 🔥 是目前最流行的前端框架之一，它提供了一系列的组件和工具，可以帮助我们快速开发出功能丰富的应用。
+- `Mapboxgl` 🚀 是一个基于 WebGL 的地图渲染引擎，它可以帮助我们轻松地在浏览器上渲染出精美的地图。
+
+基于这两个优秀的技术，我开发了 `React-Mapboxgl-Zt`，可以帮助开发者快速地开发出具有地图功能的应用。
+
+![20250418224136](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/20250418224136.png)
+
+## ✨ 组件库亮点
+
+### 1. 丰富的地图组件 📦
+
+`React-Mapboxgl-Zt`提供了丰富的地图组件，包括：
+
+#### 地图组件 🌍
+
+- `Map`：提供基础的地图展示功能
+
+#### 地图控件 🎮
+
+- `ScaleControl`：比例尺控件，用来显示地图上的距离与实际距离的比例
+- `NavigationControl`：导航控件，用来显示地图上的缩放、旋转、平移按钮
+- `FullscreenControl`：全屏控件，用来显示地图全屏按钮
+- `mousePositionControl`：鼠标位置控件，用来显示当前鼠标所在的经纬度位置
+- `drawControl`：绘图控件，用来提供绘制点线面等图层的能力
+- `customControl`：自定义控件，用来提供自定义的地图控件
+
+#### 图层组件 🎨
+
+- `BackgroundLayer`：背景图层，用来绘制背景，并覆盖到地图上
+- `CircleLayer`：点图层，用来绘制点或圆图层
+- `FillLayer`：填充图层，用来绘制填充图层
+- `LineLayer`：线图层，用来绘制线图层
+- `HeatmapLayer`：热力图图层，用来绘制热力图
+- `RasterLayer`：栅格图层，用来绘制栅格图层，包括 `WMS Layer` 和 `Tile Layer` 等服务
+
+#### 地图覆盖物 📌
+
+- `Marker`：地图标记，用来在地图上显示标记点
+- `Popup`：弹出框，用来在地图上显示弹出框
+
+### 2. 功能强大的空间分析和计算工具 🔧
+
+`React-Mapboxgl-Zt` 不仅包含地图组件，还基于 `turf.js` 封装了一个空间分析和计算工具——`MapTool`
+
+`MapTool` 提供了丰富的空间分析和计算功能，包括：
+
+#### 几何计算 📐
+
+- `distance`：计算两点之间的距离
+- `pointToLineDistance`：计算点到线的距离
+- `length`：计算线的长度
+- `area`：计算多边形面积
+
+#### 空间计算 🧮
+
+- `nearestPointOnLine`：计算点到线的最近点
+- `pointAlongLine`：计算线上指定距离处的点
+- `buffer`：计算缓冲区
+- `intersection`：相交计算
+- `union`：合并计算
+- `difference`：差集计算
+- `bbox`：计算多边形四至
+- `bboxPolygon`：计算多边形外接矩形
+- `centroid`：计算多边形的质心
+- `center`：计算几何中心点
+
+#### 空间分析 🔍
+
+- `isPointOnLine`：判断点是否在线上
+- `isPointOnPolygon`：判断点是否在多边形内
+- `isIntersects`：判断是否相交
+- `nearestPoint`：计算两点之间的最近点
+- `isWithin`：判断是否被包含
+- `isContains`：判断是否包含
+- `isOverlap`：判断是否重叠
+
+### 3. 完善的文档和示例 📚
+
+`React-Mapboxgl-Zt` 还提供了丰富的文档和示例：
+
+![20250418225055](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/20250418225055.png)
+
+## 🛠️ 如何使用
+
+本组件的`api`与 `mapboxgl` 官方基本保持一致，因此，开发者在使用之前最好对 `mapboxgl` 的基本用法有一定的了解。
+
+### 安装
+
+#### 1. 使用包管理器 📦
+
+建议使用包管理器进行安装（例如 npm、yarn、pnpm 等），以便可以使用打包工具（例如 webpack 或者 vite 等）进行打包。
+
+执行以下命令进行安装：
+
+```javascript
+# 选择一个你喜欢的包管理器
+
+# npm
+$ npm install react-mapboxgl-zt --save
+
+# yarn
+$ yarn add react-mapboxgl-zt
+
+# pnpm
+$ pnpm install react-mapboxgl-zt
+```
+
+#### 2. cdn 引入 🌐
+
+如果你的项目不使用打包工具，可以直接在浏览器中引入 `cdn` 链接。引入之后就可以在全局使用 `ReactMap` 变量了
+
+```html
+<head>
+  <!-- Import React -->
+  <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/react/18.2.0/umd/react.development.js"></script>
+  <!-- Import ReactDOM -->
+  <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/react-dom/18.2.0/umd/react-dom.development.js"></script>
+  <!-- Import babel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.3/babel.min.js"></script>
+
+  <!-- Import style -->
+  <link
+    rel="stylesheet"
+    href="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.css"
+  />
+  <!-- Import library -->
+  <script src="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.umd.js"></script>
+</head>
+```
+
+### 使用
+
+```typescript
+// ✅ 引入地图工厂函数
+import { MapFactory } from 'react-mapboxgl-zt';
+
+// ✅ 创建地图组件
+const MapComponent = MapFactory({
+  accessToken: 'access token',
+});
+
+function App() {
+  return (
+    <div style={{ height: '100%', width: '100%' }}>
+      {/* ✅ 使用 MapComponent */}
+      <MapComponent />
+    </div>
+  );
+}
+```
+
+![20250418224200](https://raw.githubusercontent.com/CodingAndSleeping/picgo/master/20250418224200.png)
+
+如果想了解更多内容，访问官方文档获取更多信息：<https://codingandsleeping.github.io/react-mapboxgl-zt/>
+
+## 💌 最后
+
+如果觉得本组件库对你有帮助，欢迎给我一个 `star` 鼓励，也欢迎大家提出宝贵意见。
+
+github：[CodingAndSleeping/react-mapboxgl-zt: react mapbox 地图组件库 (github.com)](https://github.com/CodingAndSleeping/react-mapboxgl-zt)

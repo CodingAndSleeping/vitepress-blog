@@ -1,3 +1,11 @@
+---
+title: OPTIONS 预检请求
+desc: OPTIONS 预检请求。
+label:
+  - 网络通信
+data: 2025-04-15
+---
+
 # OPTIONS 预检请求
 
 ## 什么是 OPTIONS 预检请求？

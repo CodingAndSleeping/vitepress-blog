@@ -1,5 +1,5 @@
 import DefaultTheme from 'vitepress/theme';
-import Layout from './components/layout.vue';
+import Layout from './components/layout/index.vue';
 
 export default {
   extends: DefaultTheme,

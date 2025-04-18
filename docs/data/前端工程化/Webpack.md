@@ -1,3 +1,12 @@
+---
+title: 前端工程化之 Webpack
+desc: webpack 的使用讲解。
+label:
+  - javascript
+  - 前端工程化
+data: 2025-03-19
+---
+
 # 前端工程化之 Webpack
 
 ::: warning

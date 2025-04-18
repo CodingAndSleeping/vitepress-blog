@@ -1,0 +1,104 @@
+---
+title: Nodejs（path）
+desc: 处理文件和目录路径的函数。
+label:
+  - Node
+date: 2025-04-10
+---
+
+# Nodejs（path）
+
+`path` 模块提供了一些用于处理文件和目录路径的函数。
+
+## path.join
+
+将多个路径拼成一个相对路径或绝对路径。支持 `..` `./` `../`
+
+```javascript
+const path = require('path');
+console.log(path.join('/foo', '/bar')); // /foo/bar
+console.log(path.join('/foo', '..', '/bar')); // /bar
+```
+
+## path.resolve
+
+将多个路径解析为一个绝对路径，如果传了多个绝对路径，返回最右边的绝对路径。支持 `..` `./` `../`
+
+```javascript
+const path = require('path');
+console.log(path.join('/foo', '/bar')); // /foo/bar
+console.log(path.join('/foo', '..', '/bar')); // /bar
+```
+
+## path.dirname
+
+返回路径的目录名。
+
+```javascript
+const path = require('path');
+console.log(path.dirname('/foo/bar/baz.html')); // /foo/bar
+```
+
+## path.basename
+
+返回路径的文件名。传入第二个参数可以去除指定的扩展名后缀。
+
+```javascript
+const path = require('path');
+console.log(path.basename('/foo/bar/baz.js')); // baz.js
+console.log(path.basename('/foo/bar/baz.js', '.js')); // baz
+console.log(path.basename('/foo/bar/baz.js', 's')); // baz.j
+```
+
+## path.extname
+
+返回路径的文件扩展名。
+
+```javascript
+const path = require('path');
+console.log(path.extname('/foo/bar/baz.js')); // .js
+console.log(path.extname('/foo/bar/.js')); //
+console.log(path.extname('/foo/bar/baz.d.ts')); // .ts
+```
+
+## path.normalize
+
+规范化路径，将路径中不规范的部分调整为规范的形式。
+
+```javascript
+const path = require('path');
+console.log(path.normalize('/foo/bar//baz/..')); // /foo/bar
+```
+
+## path.sep
+
+返回当前操作系统的路径分隔符。
+
+在 `Windows` 操作系统上，`path.sep` 的值为反斜杠 `\`，而在 `Unix` 操作系统上则为正斜杠 `/`
+
+## path.parse 和 path.format
+
+`path.parse` 将一个路径字符串解析为对象，`path.format` 将一个对象格式化为路径字符串。
+
+```javascript
+const path = require('path');
+console.log(path.parse('/foo/bar/baz.js'));
+// {
+//   root: '/',
+//   dir: '/foo/bar',
+//   base: 'baz.js',
+//   ext: '.js',
+//   name: 'baz'
+// }
+
+console.log(
+  path.format({
+    root: '/',
+    dir: '/foo/bar',
+    base: 'baz.js',
+    ext: '.js',
+    name: 'baz',
+  }),
+);
+// /foo/bar/baz.js
+```
