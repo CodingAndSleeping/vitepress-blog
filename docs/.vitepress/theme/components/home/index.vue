@@ -2,14 +2,11 @@
 import { useData, useRouter } from 'vitepress';
 import useQuotes from '../../hooks/useQuotes';
 import { data } from '../../../blog.data';
-import { computed, ref } from 'vue';
+import usePageData from '../../hooks/usePageData';
 const router = useRouter();
 const { theme } = useData();
 const { quote, changeQuote } = useQuotes();
-const currentPage = ref(1);
-const blogs = computed(() => {
-  return data.slice((currentPage.value - 1) * 10, currentPage.value * 10);
-});
+const { blogs, currentPage } = usePageData(data);
 
 const handleBlogClik = (url: string) => {
   router.go('/vitepress-blog' + url);
