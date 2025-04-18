@@ -3,7 +3,7 @@ title: OSI 七层网络模型
 desc: OSI 七层网络模型。
 label:
   - 网络通信
-data: 2025-04-13
+date: 2025-04-13
 ---
 
 # OSI 七层网络模型

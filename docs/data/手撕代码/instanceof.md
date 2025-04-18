@@ -4,7 +4,7 @@ desc: 手写 instanceof。
 label:
   - javascript
   - 手撕代码
-data: 2022-07-14
+date: 2022-07-14
 ---
 
 ## 手写 instanceof

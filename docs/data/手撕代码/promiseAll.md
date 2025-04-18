@@ -4,7 +4,7 @@ desc: 手写 Promise.all 和 Promise.race。
 label:
   - javascript
   - 手撕代码
-data: 2022-07-17
+date: 2022-07-17
 ---
 
 ## 手写 Promise.all 和 Promise.race

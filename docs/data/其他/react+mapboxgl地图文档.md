@@ -4,7 +4,7 @@ desc: 一个基于 React + MapboxGL 的地图组件库。
 label:
   - react
   - GIS
-data: 2025-03-27
+date: 2025-03-27
 top: true
 ---
 

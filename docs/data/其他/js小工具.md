@@ -3,7 +3,7 @@ title: JS小工具
 desc: 一些常用的JS小工具。
 label:
   - javascript
-data: 2023-11-10
+date: 2023-11-10
 ---
 
 ## 计算一行文本的宽度

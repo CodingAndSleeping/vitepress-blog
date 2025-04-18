@@ -4,7 +4,7 @@ desc: 两个大数相加。
 label:
   - javascript
   - 手撕代码
-data: 2025-04-13
+date: 2025-04-13
 ---
 
 ## 大数相加

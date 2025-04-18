@@ -3,7 +3,7 @@ title: 基于mapserver的切片缓存服务配置（mapchache.xml文件）
 desc: 基于mapserver的切片缓存服务配置（mapchache.xml文件）
 label:
   - GIS
-data: 2022-10-18
+date: 2022-10-18
 ---
 
 # mapcache 切片 配置文件详解

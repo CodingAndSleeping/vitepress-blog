@@ -3,7 +3,7 @@ title: DNS 解析规则
 desc: DNS 解析规则。
 label:
   - 网络通信
-data: 2025-04-14
+date: 2025-04-14
 ---
 
 # DNS 解析规则

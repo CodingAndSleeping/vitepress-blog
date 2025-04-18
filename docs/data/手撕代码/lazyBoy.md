@@ -4,7 +4,7 @@ desc: 手写 lazyBoy。
 label:
   - javascript
   - 手撕代码
-data: 2025-04-15
+date: 2025-04-15
 ---
 
 ## 手写 lazyBoy

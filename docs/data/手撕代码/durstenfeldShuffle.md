@@ -4,7 +4,7 @@ desc: 洗牌算法。
 label:
   - javascript
   - 手撕代码
-data: 2025-04-14
+date: 2025-04-14
 ---
 
 ## 洗牌算法

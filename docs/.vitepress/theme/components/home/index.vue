@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useData } from 'vitepress';
 import useQuotes from '../../hooks/useQuotes';
-import { data as docs } from './docs.data';
+import { data } from '../../../blog.data';
+
+console.log(data);
 const { theme } = useData();
 const { quote, changeQuote } = useQuotes();
 </script>
@@ -21,7 +23,9 @@ const { quote, changeQuote } = useQuotes();
       </Transition>
     </div>
 
-    <div class="content"></div>
+    <div class="content">
+      <div class="card" v-for="item in data" :key="item.url"></div>
+    </div>
   </div>
 </template>
 

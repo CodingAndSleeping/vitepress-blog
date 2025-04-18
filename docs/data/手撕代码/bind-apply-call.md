@@ -4,7 +4,7 @@ desc: 手动实现bind/apply/call函数。
 label:
   - javascript
   - 手撕代码
-data: 2022-07-16
+date: 2022-07-16
 ---
 
 ## 手写 bind/apply/call
