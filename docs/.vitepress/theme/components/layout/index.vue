@@ -71,4 +71,8 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   border-bottom: 1px solid #eee;
   opacity: 1;
 }
+
+#canvas_sakura {
+  z-index: -99;
+}
 </style>

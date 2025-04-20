@@ -21,7 +21,7 @@ const handleBlogClik = (url: string) => {
     }"
   >
     <div class="header">
-      <div class="title">CAS BLOG</div>
+      <div class="title"></div>
 
       <Transition mode="out-in">
         <div class="desc" :key="quote" @click="changeQuote">{{ quote }}</div>
@@ -29,144 +29,220 @@ const handleBlogClik = (url: string) => {
     </div>
 
     <div class="content">
-      <div
-        class="card"
-        v-for="item in blogs"
-        :key="item.url"
-        @click="handleBlogClik(item.url)"
-      >
-        <i class="top" v-if="item.top"> </i>
-        <el-card shadow="hover" body-class="card-body">
-          <div class="title">{{ item.title }}</div>
-          <div class="desc">{{ item.desc }}</div>
+      <div class="blog-list">
+        <el-card
+          shadow="hover"
+          class="card"
+          v-for="item in blogs"
+          :key="item.url"
+          @click="handleBlogClik(item.url)"
+        >
+          <i class="top" v-if="item.top"></i>
+
+          <span class="title">{{ item.title }}</span>
+          <span class="desc">{{ item.desc }}</span>
 
           <div class="info">
-            <div class="user split">CAS</div>
-
-            <div class="date split">{{ item.date.ZHString }}</div>
-            <div class="label">
+            <span class="user split">CAS</span>
+            <span class="date split">{{ item.date.ZHString }}</span>
+            <div class="label mobile-hidden">
               <div v-for="label in item.label" :key="label">
                 <el-tag>{{ label }}</el-tag>
               </div>
             </div>
           </div>
         </el-card>
-      </div>
 
-      <div class="pagination">
-        <el-pagination
-          small
-          background
-          layout="prev, pager, next, total"
-          v-model:currentPage="currentPage"
-          :total="data.length"
-          :page-size="10"
-        />
+        <div class="pagination">
+          <el-pagination
+            small
+            background
+            layout="prev, pager, next, total"
+            v-model:currentPage="currentPage"
+            :total="data.length"
+            :page-size="10"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+@keyframes focusing {
+  100% {
+    background-position: left;
+  }
+}
 .VPHome {
   position: absolute;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 2rem 10rem 2rem;
 
-  padding-bottom: 10rem;
   .header {
     width: 100%;
-    padding: 1rem 0;
+    padding: 1rem;
     margin: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .title {
+      width: fit-content;
+      font-weight: bold;
       font-size: 4rem;
       margin: 2rem 0;
+
+      background: radial-gradient(circle closest-side, #000 94%, #0000)
+        right/calc(200% - 1em) 100%;
+      /* animation: focusing 1s infinite alternate linear; */
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-play-state: running;
+      animation-name: focusing;
     }
+
+    .title::before {
+      content: 'CAS BLOG';
+      line-height: 1em;
+      color: #0000;
+      background: inherit;
+      background-image: radial-gradient(circle closest-side, #fff 94%, #000);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
     .desc {
       font-size: 1rem;
       cursor: pointer;
+      text-align: center;
     }
   }
 
   .content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 4px;
-    .card {
-      width: 50rem;
-      margin: 0.5rem;
-      cursor: pointer;
-      position: relative;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
 
-      .top {
-        position: absolute;
-        overflow: hidden;
-        width: 30px;
-        height: 30px;
-        top: -2px;
-        left: -2px;
-        opacity: 0.5;
-      }
-      .top::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 30px;
-        background-image: linear-gradient(
-          45deg,
-          var(--el-color-primary),
-          var(--el-color-primary)
-        );
-        transform: rotate(-45deg) translateY(-20px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 5px 10px #0000003b;
-      }
+    .blog-list {
+      flex: 1;
 
-      .title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-      }
-      .desc {
-        margin: 1rem 0;
-        font-size: 0.8rem;
-      }
-      .info {
-        display: flex;
-        align-items: center;
-        font-size: 0.7rem;
-        line-height: 8px;
-        height: 8px;
-        font-weight: 500;
-        .split::after {
-          content: '';
-          display: inline-block;
-          width: 1px;
-          height: 8px;
-          margin: 0 10px;
-          background-color: #4e5969;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 4px;
+
+      margin-right: 1rem;
+      .card {
+        width: 50rem;
+
+        margin-bottom: 1rem;
+        cursor: pointer;
+        position: relative;
+
+        @media (max-width: 768px) {
+          width: 20rem;
         }
 
-        .label {
+        .top {
+          position: absolute;
+          overflow: hidden;
+          width: 30px;
+          height: 30px;
+          top: -2px;
+          left: -2px;
+          opacity: 0.5;
+        }
+        .top::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 30px;
+          background-image: linear-gradient(
+            45deg,
+            var(--el-color-primary),
+            var(--el-color-primary)
+          );
+          transform: rotate(-45deg) translateY(-20px);
           display: flex;
-          div {
-            margin: 0 0.5rem;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 5px 10px #0000003b;
+        }
+
+        .title {
+          width: fit-content;
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          background: linear-gradient(to right, #353535, #353535) no-repeat left
+            bottom;
+          background-size: 0 1px;
+          transition: 0.5s;
+        }
+
+        .desc {
+          width: fit-content;
+          margin: 1rem 0;
+          font-size: 0.8rem;
+          color: #353535;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .info {
+          display: flex;
+          align-items: center;
+          font-size: 0.7rem;
+          line-height: 8px;
+          height: 8px;
+          font-weight: 500;
+          .split::after {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 8px;
+            margin: 0 10px;
+            background-color: #4e5969;
+          }
+
+          .label {
+            display: flex;
+            div {
+              margin: 0 0.5rem;
+            }
+
+            @media (max-width: 768px) {
+              display: none;
+            }
           }
         }
       }
-    }
 
-    .pagination {
-      margin: 1rem;
+      .card:hover {
+        .title {
+          background-size: 100% 2px;
+        }
+      }
+
+      .pagination {
+        margin: 1rem;
+      }
     }
   }
 }

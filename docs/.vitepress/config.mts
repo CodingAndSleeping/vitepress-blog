@@ -8,7 +8,16 @@ export default defineConfig({
   title: 'CodingAndSleeping',
   // description: "A VitePress Site",
   lastUpdated: true,
-  head: [['link', { rel: 'icon', href: '/vitepress-blog/favicon.svg' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/vitepress-blog/favicon.svg' }],
+    [
+      'script',
+      {
+        defer: '',
+        src: 'https://cdn.jsdelivr.net/gh/Fuukei/Public_Repository@latest/static/js/sakura-less.js',
+      },
+    ],
+  ],
   themeConfig,
   vite: {
     resolve: {
