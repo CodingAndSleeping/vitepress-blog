@@ -110,6 +110,7 @@ const handleBlogClik = (url: string) => {
 
     .title::before {
       content: 'CAS BLOG';
+      font-style: italic;
       line-height: 1em;
       color: #0000;
       background: inherit;
