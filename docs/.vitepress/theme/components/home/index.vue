@@ -199,7 +199,6 @@ const handleBlogClik = (url: string) => {
           width: fit-content;
           margin: 1rem 0;
           font-size: 0.8rem;
-          color: #353535;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
