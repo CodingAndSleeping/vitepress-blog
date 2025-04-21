@@ -47,7 +47,7 @@ const handleBlogClik = (url: string) => {
             <span class="date split">{{ item.date.ZHString }}</span>
             <div class="label mobile-hidden">
               <div v-for="label in item.label" :key="label">
-                <el-tag>{{ label }}</el-tag>
+                <el-tag size="small">{{ label }}</el-tag>
               </div>
             </div>
           </div>
