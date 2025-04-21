@@ -265,4 +265,13 @@ export default {
 
   nav,
   sidebar,
-} as DefaultTheme.Config;
+
+  title: 'CAS BLOG',
+} as DefaultTheme.Config & {
+  // 新增的配置项
+  title?: string;
+  quoteOptions?: {
+    quotes?: string[];
+    interval?: number;
+  };
+};

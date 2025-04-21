@@ -21,7 +21,7 @@ const handleBlogClik = (url: string) => {
     }"
   >
     <div class="header">
-      <div class="title"></div>
+      <div class="title">{{ theme.title || 'CAS BLOG' }}</div>
 
       <Transition mode="out-in">
         <div class="desc" :key="quote" @click="changeQuote">{{ quote }}</div>
@@ -55,7 +55,7 @@ const handleBlogClik = (url: string) => {
 
         <div class="pagination">
           <el-pagination
-            small
+            size="small"
             background
             layout="prev, pager, next, total"
             v-model:currentPage="currentPage"
@@ -91,32 +91,10 @@ const handleBlogClik = (url: string) => {
     align-items: center;
 
     .title {
-      width: fit-content;
+      font-style: italic;
       font-weight: bold;
       font-size: 4rem;
-      margin: 2rem 0;
-
-      background: radial-gradient(circle closest-side, #000 94%, #0000)
-        right/calc(200% - 1em) 100%;
-      /* animation: focusing 1s infinite alternate linear; */
-      animation-duration: 1s;
-      animation-timing-function: linear;
-      animation-delay: 0s;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-      animation-play-state: running;
-      animation-name: focusing;
-    }
-
-    .title::before {
-      content: 'CAS BLOG';
-      font-style: italic;
-      line-height: 1em;
-      color: #0000;
-      background: inherit;
-      background-image: radial-gradient(circle closest-side, #fff 94%, #000);
-      -webkit-background-clip: text;
-      background-clip: text;
+      margin: 3rem 0;
     }
 
     .desc {

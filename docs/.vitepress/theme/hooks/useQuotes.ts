@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { useData } from 'vitepress';
 
 const defaultQuotes = [
   '成功的路上并不拥挤，因为坚持的人不多。',
@@ -13,13 +14,12 @@ const defaultQuotes = [
   '人生没有白走的路，每一步都算数。',
 ];
 
-type Options = {
-  quotes?: string[];
-  interval?: number;
-};
+const useQuotes = () => {
+  const { theme } = useData();
 
-const useQuotes = (options?: Options) => {
-  const { quotes = defaultQuotes, interval = 2 } = options || {};
+  const quotes = theme.value?.quoteOptions?.quotes || defaultQuotes;
+  const interval = theme.value?.quoteOptions?.interval || 2;
+
   const quote = ref(quotes[0]);
 
   let count = 0;
