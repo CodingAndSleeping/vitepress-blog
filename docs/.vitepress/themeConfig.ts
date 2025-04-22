@@ -165,6 +165,11 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
       text: 'HTTP1.0、1.1、2.0的区别',
       link: '/网络通信/HTTP1.0、1.1、2.0的区别',
     },
+
+    // {
+    //   text: 'HTTP、HTTPS的区别',
+    //   link: '/网络通信/HTTP、HTTPS的区别',
+    // },
   ],
 
   '/手撕代码/': [
@@ -223,6 +228,11 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
     {
       text: '大数相加',
       link: '/手撕代码/bigint',
+    },
+
+    {
+      text: '无缝轮播图',
+      link: '/手撕代码/无缝轮播图',
     },
   ],
 
