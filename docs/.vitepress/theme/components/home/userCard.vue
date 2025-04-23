@@ -1,7 +1,7 @@
 <template>
   <div class="user-card">
     <el-card shadow="hover" body-class="card">
-      <img :"src="withBase(theme.avatar)" alt="avatar" />
+      <img :src="withBase(theme.avatar)" alt="avatar" />
       <div class="name">CAS</div>
       <div class="blog-info">
         <div class="info-item">
