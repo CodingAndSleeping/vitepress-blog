@@ -59,7 +59,7 @@ const handleBlogClik = (url: string) => {
   align-items: center;
   border-radius: 4px;
 
-  margin-right: 1rem;
+  margin: 1rem;
   .blog-list {
     width: 50rem;
     margin-bottom: 1rem;

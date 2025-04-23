@@ -3,6 +3,7 @@ import Header from './header.vue';
 import BlogList from './blogList.vue';
 import UserCard from './userCard.vue';
 import { useData } from 'vitepress';
+import LabelCard from './labelCard.vue';
 
 const { theme } = useData();
 </script>
@@ -18,8 +19,9 @@ const { theme } = useData();
 
     <div class="content">
       <BlogList></BlogList>
-      <el-affix :offset="75">
+      <el-affix :offset="65">
         <UserCard></UserCard>
+        <LabelCard></LabelCard>
       </el-affix>
     </div>
   </div>

@@ -282,10 +282,28 @@ export default {
   sidebar,
 
   title: 'CAS BLOG',
+  blogLabels: [
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'TypeScript',
+    'Vue',
+    'React',
+    'Node',
+    'Nest',
+    'Express',
+    'MySQL',
+    '前端工程化',
+    '浏览器',
+    '源码学习',
+    '网络通信',
+    '其他',
+  ],
 } as DefaultTheme.Config & {
   // 新增的配置项
-  avatar?:string;
+  avatar?: string;
   title?: string;
+  blogLabels?: string[];
   quoteOptions?: {
     quotes?: string[];
     interval?: number;

@@ -39,7 +39,7 @@ const { blogsInThisMonth, blogsInThisWeek } = useBlogUpdateInfo(data);
 <style scoped lang="scss">
 .main {
   width: 20rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 
   :deep(.user-card) {
     display: flex;
@@ -52,8 +52,8 @@ const { blogsInThisMonth, blogsInThisWeek } = useBlogUpdateInfo(data);
       margin: 1rem 0;
     }
 
-    .user-card_user-name {
-      font-weight: 500;
+    .user-card__user-name {
+      font-weight: 600;
       text-align: center;
       margin: 0.5rem 0;
     }
@@ -73,6 +73,7 @@ const { blogsInThisMonth, blogsInThisWeek } = useBlogUpdateInfo(data);
         }
         .info-item__num {
           font-size: 1.2rem;
+          font-weight: 600;
           font-family: monospace;
         }
       }
