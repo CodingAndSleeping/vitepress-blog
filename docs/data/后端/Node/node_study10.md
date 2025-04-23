@@ -268,3 +268,73 @@ fs.watch('./', { recursive: true }, (eventType, filename) => {
   console.log(`File '${filename}' has changed: ${eventType}`)
 })
 ```
+
+### 可读流 createReadStream
+
+`fs.createReadStream` 可以创建一个可读流，用于读取文件。
+
+```javascript
+import fs from 'fs'
+const readStream = fs.createReadStream('./text.txt', {
+  encoding: 'utf8',
+})
+
+readStream.on('data', chunk => {
+  console.log(chunk)
+})
+
+readStream.on('end', () => {
+  console.log('close')
+})
+```
+
+### 可写流 createWriteStream
+
+`fs.createWriteStream` 可以创建一个可写流，用于写入文件。
+
+```javascript
+import fs from 'fs'
+const writeStream = fs.createWriteStream('./text.txt')
+
+writeStream.write('Hello Node.js\n')
+writeStream.write('Hello Node.js\n')
+writeStream.end()
+```
+
+### 硬链接和软连接 link / symlink
+
+`fs.link` 用于创建硬链接，`fs.symlink` 用于创建软链接。
+
+- 硬链接：
+
+  - 文件共享：硬链接允许多个文件名指向同一个文件，这样可以在不同的位置使用不同的文件名引用相同的内容。并且在多个位置对文件的修改会反映在所有引用文件上。
+  - 文件备份：通过创建硬链接，可以在不复制文件的情况下创建文件的备份。如果原始文件发生更改，备份文件也会自动更新。这样可以节省磁盘空间，并确保备份文件与原始文件保持同步。
+  - 文件重命名：通过创建硬链接，可以为文件创建一个新的文件名，而无需复制或移动文件。这对于需要更改文件名但保持相同内容和属性的场景非常有用。
+  - 删除一个硬链接不会影响其他链接，只有当所有硬链接都被删除时，文件才会真正被删除
+
+- 软连接：
+  - 快捷方式：软链接类似于快捷方式，是一个特殊的文件，内容是指向另一个文件或目录的路径。
+  - 软链接可以用于解决文件或目录的位置变化问题。如果目标文件或目录被移动或重命名，只需更新软链接的目标路径即可，而不需要修改引用该文件或目录的其他代码。
+  - 删除原始文件后，软链接会失效（称为"断链"）
+
+```javascript
+import fs from 'fs/promises'
+
+// 创建软链接
+fs.symlink('./text.txt', './text2.txt')
+  .then(() => {
+    console.log('创建软链接成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+
+// 创建硬链接
+fs.link('./text.txt', './text3.txt')
+  .then(() => {
+    console.log('创建硬链接成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
