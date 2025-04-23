@@ -17,9 +17,6 @@ importers:
       moment:
         specifier: ^2.30.1
         version: 2.30.1
-      vite-plugin-vitepress-auto-sidebar:
-        specifier: ^1.7.1
-        version: 1.7.1(@typescript-eslint/parser@8.31.0(eslint@9.25.1)(typescript@5.8.3))(eslint@9.25.1)(typescript@5.8.3)(vite@6.3.2(@types/node@22.14.1)(sass@1.86.3))(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.4)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.3)(search-insights@2.17.3)(typescript@5.8.3))
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.8.3)
@@ -33,9 +30,9 @@ importers:
       vite:
         specifier: ^6.3.2
         version: 6.3.2(@types/node@22.14.1)(sass@1.86.3)
-      vite-plugin-vitepress-auto-nav:
-        specifier: ^3.0.0
-        version: 3.0.0(vite@6.3.2(@types/node@22.14.1)(sass@1.86.3))(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.4)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.3)(search-insights@2.17.3)(typescript@5.8.3))
+      vite-plugin-vitepress-auto-sidebar:
+        specifier: ^1.7.1
+        version: 1.7.1(@typescript-eslint/parser@8.31.0(eslint@9.25.1)(typescript@5.8.3))(eslint@9.25.1)(typescript@5.8.3)(vite@6.3.2(@types/node@22.14.1)(sass@1.86.3))(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.4)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.3)(search-insights@2.17.3)(typescript@5.8.3))
       vitepress:
         specifier: 2.0.0-alpha.4
         version: 2.0.0-alpha.4(@algolia/client-search@5.20.4)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.3)(search-insights@2.17.3)(typescript@5.8.3)
@@ -1948,13 +1945,6 @@ packages:
 
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
-
-  vite-plugin-vitepress-auto-nav@3.0.0:
-    resolution: {integrity: sha512-/hCmKMItdmm+Blv8jFGAtyqT4qKvtcrG1Hp7hA1DQd4NYm1zf8YUGdKEkzssSlVGZfRibIMxoDE27vxAWDGu4w==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      vite: '>=4.0.0'
-      vitepress: '>=1.0.0'
 
   vite-plugin-vitepress-auto-sidebar@1.7.1:
     resolution: {integrity: sha512-zgJ7hL6c2QWITg5eRnXf0H3x2gEuqmgXg8np6x4OeYoD8U1Fv283CG9eD91Sefvd3FOxvvhBiVuSEoVVwB6dcg==}
@@ -4187,13 +4177,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
-
-  vite-plugin-vitepress-auto-nav@3.0.0(vite@6.3.2(@types/node@22.14.1)(sass@1.86.3))(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.4)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.3)(search-insights@2.17.3)(typescript@5.8.3)):
-    dependencies:
-      fast-glob: 3.3.3
-      gray-matter: 4.0.3
-      vite: 6.3.2(@types/node@22.14.1)(sass@1.86.3)
-      vitepress: 2.0.0-alpha.4(@algolia/client-search@5.20.4)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.3)(search-insights@2.17.3)(typescript@5.8.3)
 
   vite-plugin-vitepress-auto-sidebar@1.7.1(@typescript-eslint/parser@8.31.0(eslint@9.25.1)(typescript@5.8.3))(eslint@9.25.1)(typescript@5.8.3)(vite@6.3.2(@types/node@22.14.1)(sass@1.86.3))(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.4)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.3)(search-insights@2.17.3)(typescript@5.8.3)):
     dependencies:

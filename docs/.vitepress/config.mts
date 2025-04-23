@@ -44,7 +44,6 @@ export default defineConfig({
           data.sort((a, b) => {
             return Number(a.split('.')[0]) - Number(b.split('.')[0]);
           });
-          console.log(data);
 
           return data;
         },
