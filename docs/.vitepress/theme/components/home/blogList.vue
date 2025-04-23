@@ -1,21 +1,21 @@
 <template>
-  <div class="blog-list">
+  <div class="main">
     <el-card
       shadow="hover"
-      class="card"
+      class="blog-list"
       v-for="item in blogs"
       :key="item.url"
       @click="handleBlogClik(item.url)"
     >
-      <i class="top" v-if="item.top"></i>
+      <i class="blog-list__top" v-if="item.top"></i>
 
-      <span class="title">{{ item.title }}</span>
-      <span class="desc">{{ item.desc }}</span>
+      <span class="blog-list__title">{{ item.title }}</span>
+      <span class="blog-list__desc">{{ item.desc }}</span>
 
-      <div class="info">
-        <span class="user split">CAS</span>
-        <span class="date split">{{ item.date.ZHString }}</span>
-        <div class="label mobile-hidden">
+      <div class="blog-list__info">
+        <span class="blog-list__user split">CAS</span>
+        <span class="blog-list__date split">{{ item.date.ZHString }}</span>
+        <div class="blog-list__label mobile-hidden">
           <div v-for="label in item.label" :key="label">
             <el-tag size="small">{{ label }}</el-tag>
           </div>
@@ -51,7 +51,7 @@ const handleBlogClik = (url: string) => {
 </script>
 
 <style scoped lang="scss">
-.blog-list {
+.main {
   flex: 1;
 
   display: flex;
@@ -60,18 +60,15 @@ const handleBlogClik = (url: string) => {
   border-radius: 4px;
 
   margin-right: 1rem;
-  .card {
+  .blog-list {
     width: 50rem;
-
     margin-bottom: 1rem;
     cursor: pointer;
     position: relative;
-
     @media (max-width: 768px) {
       width: 20rem;
     }
-
-    .top {
+    .blog-list__top {
       position: absolute;
       overflow: hidden;
       width: 30px;
@@ -80,7 +77,7 @@ const handleBlogClik = (url: string) => {
       left: -2px;
       opacity: 0.5;
     }
-    .top::after {
+    .blog-list__top::after {
       content: '';
       position: absolute;
       width: 100%;
@@ -97,7 +94,7 @@ const handleBlogClik = (url: string) => {
       box-shadow: 0 5px 10px #0000003b;
     }
 
-    .title {
+    .blog-list__title {
       width: fit-content;
       font-size: 1.2rem;
       font-weight: bold;
@@ -114,7 +111,7 @@ const handleBlogClik = (url: string) => {
       transition: 0.5s;
     }
 
-    .desc {
+    .blog-list__desc {
       width: fit-content;
       margin: 1rem 0;
       font-size: 0.8rem;
@@ -124,7 +121,7 @@ const handleBlogClik = (url: string) => {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .info {
+    .blog-list__info {
       display: flex;
       align-items: center;
       font-size: 0.7rem;
@@ -140,7 +137,7 @@ const handleBlogClik = (url: string) => {
         background-color: #4e5969;
       }
 
-      .label {
+      .blog-list__label {
         display: flex;
         div {
           margin: 0 0.5rem;

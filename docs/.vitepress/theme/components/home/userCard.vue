@@ -1,27 +1,26 @@
 <template>
-  <div class="user-card">
-    <el-card shadow="hover" body-class="card">
+  <div class="main">
+    <el-card shadow="hover" body-class="user-card">
       <img :src="withBase(theme.avatar)" alt="avatar" />
-      <div class="name">CAS</div>
-      <div class="blog-info">
-        <div class="info-item">
-          <div class="num">{{ data.length }}</div>
-
-          <div class="label">博客文章</div>
+      <div class="user-card__user-name">CAS</div>
+      <div class="user-card__blog-info">
+        <div class="user-card__info-item">
+          <div class="info-item__num">{{ data.length }}</div>
+          <div class="info-item__label">博客文章</div>
         </div>
 
         <div class="split"></div>
 
-        <div class="info-item">
-          <div class="num">+{{ blogsInThisMonth.length }}</div>
-          <div class="label">本月更新</div>
+        <div class="user-card__info-item">
+          <div class="info-item__num">+{{ blogsInThisMonth.length }}</div>
+          <div class="info-item__label">本月更新</div>
         </div>
 
         <div class="split"></div>
 
-        <div class="info-item">
-          <div class="num">+{{ blogsInThisWeek.length }}</div>
-          <div class="label">本周更新</div>
+        <div class="user-card__info-item">
+          <div class="info-item__num">+{{ blogsInThisWeek.length }}</div>
+          <div class="info-item__label">本周更新</div>
         </div>
       </div>
     </el-card>
@@ -29,20 +28,20 @@
 </template>
 
 <script setup lang="ts">
-import { withBase, useData } from 'vitepress'
+import { withBase, useData } from 'vitepress';
 import { data } from '../../../blog.data';
 import useBlogUpdateInfo from '../../hooks/useBlogUpdateInfo';
 
-const { theme } = useData()
+const { theme } = useData();
 const { blogsInThisMonth, blogsInThisWeek } = useBlogUpdateInfo(data);
 </script>
 
 <style scoped lang="scss">
-.user-card {
+.main {
   width: 20rem;
   margin-bottom: 1rem;
 
-  :deep(.el-card__body) {
+  :deep(.user-card) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,26 +52,26 @@ const { blogsInThisMonth, blogsInThisWeek } = useBlogUpdateInfo(data);
       margin: 1rem 0;
     }
 
-    .name {
+    .user-card_user-name {
       font-weight: 500;
       text-align: center;
       margin: 0.5rem 0;
     }
 
-    .blog-info {
+    .user-card__blog-info {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-around;
       margin: 1rem 0;
-      .info-item {
+      .user-card__info-item {
         margin: 0 1rem;
         text-align: center;
-        .label {
+        .info-item__label {
           font-size: 0.8rem;
           color: #606f84;
         }
-        .num {
+        .info-item__num {
           font-size: 1.2rem;
           font-family: monospace;
         }

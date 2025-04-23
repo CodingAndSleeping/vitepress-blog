@@ -1,9 +1,11 @@
 <template>
   <div class="header">
-    <div class="title">{{ theme.title || 'CAS BLOG' }}</div>
+    <div class="header__title">{{ theme.title || 'CAS BLOG' }}</div>
 
     <Transition mode="out-in">
-      <div class="desc" :key="quote" @click="changeQuote">{{ quote }}</div>
+      <div class="header__desc" :key="quote" @click="changeQuote">
+        {{ quote }}
+      </div>
     </Transition>
   </div>
 </template>
@@ -25,14 +27,14 @@ const { quote, changeQuote } = useQuotes();
   flex-direction: column;
   align-items: center;
 
-  .title {
+  .header__title {
     font-style: italic;
     font-weight: bold;
     font-size: 4rem;
     margin: 3rem 0;
   }
 
-  .desc {
+  .header__desc {
     font-size: 1rem;
     cursor: pointer;
     text-align: center;
