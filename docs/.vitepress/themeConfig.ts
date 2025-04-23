@@ -117,6 +117,10 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
       text: 'Node.js(util)',
       link: '/后端/Node/node_study9',
     },
+        {
+      text: 'Node.js(fs)',
+      link: '/后端/Node/node_study10',
+    },
   ],
   '/前端工程化/': [
     {
