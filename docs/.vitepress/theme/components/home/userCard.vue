@@ -1,7 +1,7 @@
 <template>
   <div class="user-card">
     <el-card shadow="hover" body-class="card">
-      <img src="/vitepress-blog/avatar.jpg" alt="avatar" />
+      <img :"src="withBase(theme.avatar)" alt="avatar" />
       <div class="name">CAS</div>
       <div class="blog-info">
         <div class="info-item">
@@ -29,9 +29,11 @@
 </template>
 
 <script setup lang="ts">
+import { withBase, useData } from 'vitepress'
 import { data } from '../../../blog.data';
 import useBlogUpdateInfo from '../../hooks/useBlogUpdateInfo';
 
+const { theme } = useData()
 const { blogsInThisMonth, blogsInThisWeek } = useBlogUpdateInfo(data);
 </script>
 
