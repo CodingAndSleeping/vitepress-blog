@@ -1,0 +1,270 @@
+---
+title: Nodejs（fs）
+desc: nodejs 文件系统模块。
+label:
+  - Node
+date: 2025-04-23
+---
+
+# Nodejs（fs）
+
+`fs` 模块提供了文件系统操作的方法。
+
+## fs 模块的多种策略
+
+- 同步策略：同步策略是指在执行操作时，主线程会被阻塞，直到操作完成。具体是在方法后面加上 `Sync` ，如 `fs.readFileSync(path)`。
+
+- 异步策略：异步策略不会阻塞主线程，通过回调函数的方式获取结果。如 `fs.readFile(path, callback)`。
+
+- promise 模式：`fs` 新增了 `promises` 模式，可以用 `async/await` 语法来处理异步操作。通过引入 `node:fs/promises` 来使用 `promise` 版本
+
+日常使用中推荐使用 `promises` 模式。
+
+## 读取模式标识 flag
+
+`flag` 有如下字段：
+
+- `a`: 打开文件用于追加。如果文件不存在则创建该文件。
+- `ax`: 类似于 `a` ，但如果路径已存在则失败。
+- `a+`: 打开文件用于读取和追加。如果文件不存在则创建该文件。
+- `ax+`: 类似于 `a+` ，但如果路径已存在则失败。
+- `as`: 以同步模式打开文件用于追加。如果文件不存在则创建该文件。
+- `as+`: 以同步模式打开文件用于读取和追加。如果文件不存在则创建该文件。
+- `r`: 打开文件用于读取。如果文件不存在则抛出异常。
+- `rs`: 以同步模式打开文件用于读取。如果文件不存在则抛出异常。
+- `r+`: 打开文件用于读取和写入。如果文件不存在则抛出异常。
+- `rs+`: 以同步模式打开文件用于读取和写入。指示操作系统绕过本地文件系统缓存。
+- `w`: 打开文件用于写入。如果文件不存在则创建，存在则截断。
+- `wx`: 类似于 `w` ，但如果路径已存在则失败。
+- `w+`: 打开文件用于读取和写入。如果文件不存在则创建，存在则截断。
+- `wx+`: 类似于 `w+` ，但如果路径已存在则失败。
+
+## 具体方法
+
+### 读取文件 readFile
+
+`fs.readFile`包含两个参数：
+
+- path：文件路径
+- options：可选参数。
+  - flag：指定文件的打开模式, 默认为 `r`。
+  - encoding：指定文件的编码，如 `utf8` 等，不指定则返回 `Buffer` 对象。
+  - signal：允许中断读取文件的操作。
+
+```javascript
+import fs from 'fs/promises'
+
+const data = await fs.readFile('./text.txt', 'utf8')
+```
+
+### 写入文件 writeFile
+
+`fs.writeFile` 参数：
+
+- path：文件路径
+- data：写入的数据，可以是 `string`、`Buffer`、`TypedArray`、`DataView`、`ArrayBuffer`、`URL` 对象。
+- options：可选参数。
+  - encoding：指定写入文件的字符编码，如 `utf8` 等。
+  - mode：指定文件的模式，如 `0o666` 等。
+  - flag：指定文件的打开模式，默认 `w`。
+  - signal：允许中断写入文件的操作。
+  - flush：如果所有数据都成功写入文件，并且 `flush` 为 `true`，则使用`filehandle.sync()`刷新数据。默认值:`false`。
+
+```javascript
+import fs from 'fs/promises'
+
+fs.writeFile('./text.txt', 'Hello Node.js', 'utf8')
+  .then(() => {
+    console.log('写入成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+### 获取文件信息 stat
+
+`fs.stat` 可以获取文件或者目录的基本信息。
+
+```javascript
+import fs from 'fs/promises'
+
+const stats = await fs.stat('./text.txt')
+```
+
+返回的对象身上除了包含一些基本信息以外，还包含可直接调用的方法，用于判断文件类型，常用的有这两个：
+
+- `isFile()`：是否是文件。
+- `isDirectory()`：是否是目录。
+
+### 追加输出 appendFile
+
+`fs.appendFile` 用于追加输出到文件末尾。
+
+参数有：
+
+- path：文件路径
+- data：写入的数据，可以是 `string`、`Buffer`、`TypedArray`、`DataView`、`ArrayBuffer`、`URL` 对象。
+- options：可选参数。
+  - encoding：指定写入文件的字符编码，如 `utf8` 等。
+  - mode：指定文件的模式，如 `0o666` 等。
+  - flag：指定文件的打开模式，默认 `a`。
+  - flush：如果所有数据都成功写入文件，并且 `flush` 为 `true`，则使用`filehandle.sync()`刷新数据。默认值:`false`。
+
+```javascript
+import fs from 'fs/promises'
+
+fs.appendFile('./text.txt', 'Hello Node.js', 'utf8')
+  .then(() => {
+    console.log('追加成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+### 移动/重命名文件 rename
+
+`fs.rename` 方法用于移动或者重命名文件。
+
+```javascript
+import fs from 'fs/promises'
+
+// 重命名文件
+fs.rename('./text.txt', './text2.txt')
+  .then(() => {
+    console.log('重命名成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+
+// 移动文件
+fs.rename('./text2.txt', './folder/text2.txt')
+  .then(() => {
+    console.log('重命名成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+### 删除文件 unlink / rm
+
+`fs.unlink` 和 `fs.rm` 都可以删除文件。后者支持删除目录和递归删除子文件和目录。
+
+```javascript
+import fs from 'fs/promises'
+
+// 删除文件
+fs.unlink('./text.txt')
+  .then(() => {
+    console.log('删除成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+
+// 删除目录   recursive: true 用于递归删除子文件和目录
+fs.rm('./folder', { recursive: true })
+  .then(() => {
+    console.log('删除成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+### 读取目录下的所有文件 readdir
+
+`fs.readdir` 可以读取目录下的所有文件。
+
+参数：
+
+- path：目录路径
+- options：可选参数。
+  - encoding：指定文件的字符编码，如 `utf8` 等。
+  - withFileTypes：返回的结果是否包含类型信息，默认 `false`。
+  - recursive：是否递归读取目录，默认 `false`。
+
+```javascript
+import fs from 'fs/promises'
+
+fs.readdir('./folder', { withFileTypes: true })
+  .then(files => {
+    console.log(files) // [{name: test.txt, isDirectory: false}]
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+### 创建目录 mkdir
+
+`fs.mkdir` 可以创建目录。
+
+参数：
+
+- path：目录路径
+- options：可选参数。
+  - mode：指定目录的模式，如 `0o777` 等。
+  - recursive：是否递归创建目录，默认 `false`。
+
+```javascript
+import fs from 'fs/promises'
+
+fs.mkdir('./folder2', { recursive: true })
+  .then(() => {
+    console.log('创建成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+### 删除目录 rmdir
+
+`fs.rmdir` 可以删除目录。
+
+参数：
+
+- path：目录路径
+- options：可选参数。
+  - maxRetries：如果遇到 `EBUSY`， `EMFILE`， `ENFILE`， `entempty` 或 `EPERM` 错误，Node.js 会在每次尝试时以 `retryDelay` 毫秒长的线性回退等待重新尝试操作。此选项表示重试次数。如果递归选项不为真，则忽略此选项。默认值:`0`。
+  - recursive：是否递归删除目录，默认 `false`。
+  - retryDelay：重试之间等待的时间（以毫秒为单位）。如果递归选项不为真，则忽略此选项。默认值:100。。
+
+```javascript
+import fs from 'fs/promises'
+fs.rmdir('./folder2', { recursive: true })
+  .then(() => {
+    console.log('删除成功')
+  })
+  .catch(err => {
+    console.error(err)
+  })
+```
+
+### 监听目录 watch
+
+`fs.watch` 可以监听目录的变化。
+
+参数：
+
+- path：要监听的文件名或目录名。
+- options： 可选参数。
+  - persistent： 指示当文件被监视时进程是否应继续运行。默认值：true。
+  - recursive： 指示是否监视所有子目录（仅当前目录被监视时生效，且取决于平台支持度）。默认值：false。
+  - encoding： 指定传递给监听器的文件名编码格式。默认值：'utf8'。
+  - signal： 用于停止监视器的中止信号量。
+- 返回值：
+  - eventType： 变更事件类型
+  - filename： 发生变更的文件名
+
+```javascript
+import fs from 'fs'
+// 监听当前目录下所有的文件和子目录中的文件
+fs.watch('./', { recursive: true }, (eventType, filename) => {
+  console.log(`File '${filename}' has changed: ${eventType}`)
+})
+```
