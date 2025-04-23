@@ -263,6 +263,7 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
 export default {
   // https://vitepress.dev/reference/default-theme-config
   logo: '/favicon.svg',
+  avatar: '/avatar.jpg',
   outline: {
     level: [2, 4],
   },
@@ -279,6 +280,7 @@ export default {
   title: 'CAS BLOG',
 } as DefaultTheme.Config & {
   // 新增的配置项
+  avatar?:string;
   title?: string;
   quoteOptions?: {
     quotes?: string[];
