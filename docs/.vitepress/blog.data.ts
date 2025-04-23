@@ -1,6 +1,4 @@
 import moment from 'moment';
-import path from 'path';
-import { defineLoader } from 'vitepress';
 import { createContentLoader } from 'vitepress';
 
 export type Data = {
