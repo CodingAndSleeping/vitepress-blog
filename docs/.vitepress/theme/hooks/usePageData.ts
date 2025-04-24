@@ -10,7 +10,8 @@ const usePageData = (data: any[] = [], pageSize: number = 10) => {
   const pageData = computed(() => {
     if (currentLabel.value) {
       _data = data.filter((item) => {
-        return item.label && item.label.includes(currentLabel.value);
+        if (!item.label) return true;
+        return item.label.includes(currentLabel.value);
       });
     } else {
       _data = data;

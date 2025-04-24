@@ -29,15 +29,21 @@
 </template>
 
 <script setup lang="ts">
-import { useData } from 'vitepress';
 import { computed } from 'vue';
 
 import { currentLabel, updateLabel } from '../../store/label';
-
-const { theme } = useData();
+import { data } from '../../../blog.data';
+console.log(data);
 const types = ['primary', 'success', 'warning', 'danger', 'info'];
 const blogLabels = computed(() => {
-  let _labels = theme.value.blogLabels || [];
+  let _labels = data.reduce<any[]>((acc, cur) => {
+    cur.label.forEach((label) => {
+      if (!acc.includes(label)) {
+        acc.push(label);
+      }
+    });
+    return acc;
+  }, []);
   return _labels.map((item, index) => ({
     text: item,
     type: types[index % 5],
