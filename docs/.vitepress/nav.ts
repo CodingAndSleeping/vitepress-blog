@@ -35,7 +35,7 @@ const nav: DefaultTheme.Config['nav'] = [
     items: [
       {
         text: 'Node',
-        link: '/后端知识/Node/1.Node.js(介绍)',
+        link: '/后端知识/Node/',
       },
       {
         text: 'Express',
@@ -53,11 +53,11 @@ const nav: DefaultTheme.Config['nav'] = [
   },
   {
     text: '前端工程化',
-    link: '/前端工程化/1.前端模块化',
+    link: '/前端工程化/',
   },
   {
     text: '手撕代码',
-    link: '/手撕代码/1.手写 new',
+    link: '/手撕代码/',
   },
   {
     text: '源码学习',
@@ -66,20 +66,24 @@ const nav: DefaultTheme.Config['nav'] = [
         text: 'Vue',
         link: '/源码学习/Vue/',
       },
+      {
+        text: 'React',
+        link: '/源码学习/React/',
+      },
     ],
   },
   {
     text: '浏览器',
-    link: '/浏览器/1.事件循环机制',
+    link: '/浏览器/',
   },
   {
     text: '网络通信',
-    link: '/网络通信/1.OSI七层网络模型',
+    link: '/网络通信/',
   },
 
   {
     text: '其他',
-    link: '/其他/1.一个基于 React + MapboxGL 的地图组件库',
+    link: '/其他/',
   },
 
   {
@@ -107,49 +111,4 @@ const nav: DefaultTheme.Config['nav'] = [
   },
 ];
 
-export default {
-  // https://vitepress.dev/reference/default-theme-config
-  logo: '/favicon.svg',
-  avatar: '/avatar.jpg',
-  outline: {
-    level: [2, 4],
-  },
-  socialLinks: [
-    { icon: 'github', link: 'https://github.com/CodingAndSleeping' },
-  ],
-  search: {
-    provider: 'local',
-  },
-
-  nav,
-
-  title: 'CAS BLOG',
-  blogLabels: [
-    'JavaScript',
-    'HTML',
-    'CSS',
-    'TypeScript',
-    'Vue',
-    'React',
-    'Node',
-    'Nest',
-    'Express',
-    'MySQL',
-    'GIS',
-    '手撕代码',
-    '前端工程化',
-    '浏览器',
-    '源码学习',
-    '网络通信',
-    '其他',
-  ],
-} as DefaultTheme.Config & {
-  // 新增的配置项
-  avatar?: string;
-  title?: string;
-  blogLabels?: string[];
-  quoteOptions?: {
-    quotes?: string[];
-    interval?: number;
-  };
-};
+export default nav;

@@ -3,7 +3,7 @@
     <el-card
       shadow="hover"
       class="blog-list"
-      v-for="item in blogs"
+      v-for="item in pageData"
       :key="item.url"
       @click="handleBlogClik(item.url)"
     >
@@ -43,7 +43,7 @@ import usePageData from '../../hooks/usePageData';
 
 const router = useRouter();
 
-const { blogs, currentPage } = usePageData(data);
+const { pageData, currentPage } = usePageData(data);
 
 const handleBlogClik = (url: string) => {
   router.go('/vitepress-blog' + url);

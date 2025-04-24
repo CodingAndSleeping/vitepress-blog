@@ -1,10 +1,48 @@
-import { defineConfig } from 'vitepress';
+import { DefaultTheme, defineConfig } from 'vitepress';
 import { fileURLToPath, URL } from 'node:url';
-import themeConfig from './themeConfig';
-
 import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar';
-import { de } from 'element-plus/es/locales.mjs';
-// https://vitepress.dev/reference/site-config
+import nav from './nav';
+
+const themeConfig = {
+  logo: '/favicon.svg',
+  avatar: '/avatar.jpg',
+  outline: {
+    level: [2, 4],
+  },
+  socialLinks: [
+    { icon: 'github', link: 'https://github.com/CodingAndSleeping' },
+  ],
+  search: {
+    provider: 'local',
+  },
+  nav,
+
+  // 自定义属性
+  title: 'CAS BLOG',
+  blogLabels: [
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'TypeScript',
+    'Vue',
+    'React',
+    'Node',
+    'Nest',
+    'Express',
+    'MySQL',
+    '手撕代码',
+    '前端工程化',
+    'Git',
+    '浏览器',
+    '源码学习',
+    '网络通信',
+    'GIS',
+    '其他',
+  ],
+} as DefaultTheme.Config & {
+  title?: string;
+  blogLabels?: string[];
+};
 
 export default defineConfig({
   base: '/vitepress-blog/',
@@ -44,7 +82,6 @@ export default defineConfig({
           data.sort((a, b) => {
             return Number(a.split('.')[0]) - Number(b.split('.')[0]);
           });
-
           return data;
         },
 
