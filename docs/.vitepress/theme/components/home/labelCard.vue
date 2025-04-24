@@ -2,8 +2,15 @@
   <div class="main">
     <el-card shadow="hover" body-class="label-card">
       <div class="label-card__title">
-        <span>🔖</span>
-        文章标签
+        <span>🔖 文章标签</span>
+        <el-tag
+          v-if="currentLabel"
+          size="small"
+          closable
+          :disable-transitions="false"
+          @close="handleRemoveLabel"
+          >{{ currentLabel }}</el-tag
+        >
       </div>
       <div class="label-card__content">
         <el-tag
@@ -13,6 +20,7 @@
           :type="label.type"
           size="small"
           effect="dark"
+          @click="handleLabelClick(label.text)"
           >{{ label.text }}</el-tag
         >
       </div>
@@ -23,6 +31,9 @@
 <script setup lang="ts">
 import { useData } from 'vitepress';
 import { computed } from 'vue';
+
+import { currentLabel, updateLabel } from '../../store/label';
+
 const { theme } = useData();
 const types = ['primary', 'success', 'warning', 'danger', 'info'];
 const blogLabels = computed(() => {
@@ -32,6 +43,13 @@ const blogLabels = computed(() => {
     type: types[index % 5],
   }));
 });
+
+const handleLabelClick = (label: string) => {
+  updateLabel(label);
+};
+const handleRemoveLabel = () => {
+  updateLabel('');
+};
 </script>
 
 <style scoped lang="scss">
@@ -46,6 +64,9 @@ const blogLabels = computed(() => {
       border-bottom: 1px solid #dddddd;
       height: 1.8rem;
       margin-bottom: 0.5rem;
+
+      display: flex;
+      justify-content: space-between;
     }
 
     .label-card__content {
@@ -55,6 +76,7 @@ const blogLabels = computed(() => {
       .label-card__label {
         margin-right: 0.5rem;
         margin-bottom: 0.5rem;
+        cursor: pointer;
       }
     }
   }

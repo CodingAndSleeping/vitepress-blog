@@ -20,7 +20,7 @@
         background
         layout="prev, pager, next, total"
         v-model:currentPage="currentPage"
-        :total="toc.length"
+        :total="total"
         :page-size="pageSize"
       />
     </div>
@@ -51,7 +51,7 @@ const toc = computed(() => {
 
 const pageSize = 20;
 
-const { pageData, currentPage } = usePageData(toc.value, pageSize);
+const { pageData, currentPage, total } = usePageData(toc.value, pageSize);
 </script>
 
 <style lang="scss" scoped>

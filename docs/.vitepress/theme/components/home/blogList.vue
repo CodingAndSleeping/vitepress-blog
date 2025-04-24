@@ -25,11 +25,12 @@
 
     <div class="pagination">
       <el-pagination
+        hide-on-single-page
         size="small"
         background
         layout="prev, pager, next, total"
         v-model:currentPage="currentPage"
-        :total="data.length"
+        :total="total"
         :page-size="10"
       />
     </div>
@@ -40,10 +41,9 @@
 import { useRouter } from 'vitepress';
 import { data } from '../../../blog.data';
 import usePageData from '../../hooks/usePageData';
-
 const router = useRouter();
 
-const { pageData, currentPage } = usePageData(data);
+const { pageData, currentPage, total } = usePageData(data);
 
 const handleBlogClik = (url: string) => {
   router.go('/vitepress-blog' + url);
