@@ -19,28 +19,10 @@ const themeConfig = {
 
   // 自定义属性
   title: 'CAS BLOG',
-  blogLabels: [
-    // 'JavaScript',
-    // 'HTML',
-    // 'CSS',
-    'TypeScript',
-    'Vue',
-    // 'React',
-    'Node',
-    'Nest',
-    // 'Express',
-    // 'MySQL',
-    '手撕代码',
-    '前端工程化',
-    'Git',
-    '浏览器',
-    '网络通信',
-    'GIS',
-    // '其他',
-  ],
+
 } as DefaultTheme.Config & {
-  title?: string;
-  blogLabels?: string[];
+  title?: string; // 首页标题
+  quotes?: string[]; // 自定义 首页变化语句 数组
 };
 
 export default defineConfig({
