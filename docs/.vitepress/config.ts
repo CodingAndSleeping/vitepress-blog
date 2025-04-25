@@ -59,11 +59,9 @@ export default defineConfig({
         path: 'docs/data',
         ignoreIndexItem: true,
         titleFromFileByYaml: true,
+        
         beforeCreateSideBarItems(data) {
-          data.sort((a, b) => {
-            return Number(a.split('.')[0]) - Number(b.split('.')[0]);
-          });
-          return data;
+          return data.sort((a, b) => Number(a.split('.')[0]) - Number(b.split('.')[0]));
         },
 
         sideBarResolved(data) {
