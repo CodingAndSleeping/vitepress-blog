@@ -116,6 +116,7 @@ const handleBlogClik = (url: string) => {
       margin-bottom: 0.5rem;
       display: -webkit-box;
       -webkit-box-orient: vertical;
+      line-clamp: 1;
       -webkit-line-clamp: 1;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -132,6 +133,7 @@ const handleBlogClik = (url: string) => {
       font-size: 0.8rem;
       display: -webkit-box;
       -webkit-box-orient: vertical;
+      line-clamp: 2;
       -webkit-line-clamp: 2;
       overflow: hidden;
       text-overflow: ellipsis;
