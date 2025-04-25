@@ -3,6 +3,7 @@ import Layout from './components/layout/index.vue';
 import { Theme } from 'vitepress';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import ElementPlus from 'element-plus';
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import 'element-plus/dist/index.css';
 import SummaryPage from './components/summaryPage/index.vue';
 export default {
@@ -12,5 +13,8 @@ export default {
   enhanceApp({ app }) {
     app.use(ElementPlus);
     app.component('SummaryPage', SummaryPage);
+    for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+      app.component(key, component);
+    }
   },
 } satisfies Theme;
