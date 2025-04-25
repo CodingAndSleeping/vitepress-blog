@@ -29,11 +29,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 
 import { currentLabel, updateLabel } from '../../store/label';
 import { data } from '../../../blog.data';
-console.log(data);
+
 const types = ['primary', 'success', 'warning', 'danger', 'info'];
 const blogLabels = computed(() => {
   let _labels = data.reduce<any[]>((acc, cur) => {
@@ -56,6 +56,13 @@ const handleLabelClick = (label: string) => {
 const handleRemoveLabel = () => {
   updateLabel('');
 };
+
+watch(currentLabel, () => {
+  scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
 </script>
 
 <style scoped lang="scss">
