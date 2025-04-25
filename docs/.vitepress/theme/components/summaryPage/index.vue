@@ -51,15 +51,13 @@ const toc = computed(() => {
 
 const pageSize = 20;
 
-const { pageData, currentPage, total } = usePageData(toc.value, pageSize);
+const { pageData, currentPage, total } = usePageData(toc, pageSize);
 </script>
 
 <style lang="scss" scoped>
 .summary {
-  height: calc(100vh - 65px - 128px - 48px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 300px;
+  margin: 0 auto;
   .summary__title {
     font-size: 24px;
     font-weight: bold;
@@ -80,11 +78,11 @@ const { pageData, currentPage, total } = usePageData(toc.value, pageSize);
     }
   }
 
-  .summary__pagination {
-    position: absolute;
-    bottom: 0;
-    transform: translateY(50px);
-  }
+  // .summary__pagination {
+  //   position: absolute;
+  //   bottom: 0;
+  //   transform: translateY(50px);
+  // }
 }
 
 :deep(.el-pager) {

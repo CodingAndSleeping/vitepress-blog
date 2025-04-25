@@ -41,9 +41,24 @@
 import { useRouter } from 'vitepress';
 import { data } from '../../../blog.data';
 import usePageData from '../../hooks/usePageData';
+import { computed } from 'vue';
+
+import { currentLabel } from '../../store/label';
+
 const router = useRouter();
 
-const { pageData, currentPage, total } = usePageData(data);
+const _data = computed(() => {
+  if (currentLabel.value) {
+    return data.filter((item) => {
+      if (!item.label) return true;
+      return item.label.includes(currentLabel.value);
+    });
+  } else {
+    return data;
+  }
+});
+
+const { pageData, currentPage, total } = usePageData(_data);
 
 const handleBlogClik = (url: string) => {
   router.go('/vitepress-blog' + url);

@@ -1,29 +1,19 @@
-import { computed, ref } from 'vue';
-import { currentLabel } from '../store/label';
+import { computed, Ref, ref } from 'vue';
 
-const usePageData = (data: any[] = [], pageSize: number = 10) => {
+const usePageData = (data: Ref<any[]>, pageSize: number = 10) => {
   const currentPage = ref(1);
   const total = ref(0);
 
-  let _data = data;
-
   const pageData = computed(() => {
-    if (currentLabel.value) {
-      _data = data.filter((item) => {
-        if (!item.label) return true;
-        return item.label.includes(currentLabel.value);
-      });
-    } else {
-      _data = data;
-    }
-    total.value = _data.length;
-    return _data.slice(
+    total.value = data.value.length;
+
+    return data.value.slice(
       (currentPage.value - 1) * pageSize,
       currentPage.value * pageSize,
     );
   });
 
-  return { pageData, currentPage, total, currentLabel };
+  return { pageData, currentPage, total };
 };
 
 export default usePageData;
