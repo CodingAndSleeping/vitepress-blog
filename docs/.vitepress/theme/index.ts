@@ -6,6 +6,10 @@ import ElementPlus from 'element-plus';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import 'element-plus/dist/index.css';
 import SummaryPage from './components/summaryPage/index.vue';
+
+// 自定义样式
+import './style/index.css';
+
 export default {
   extends: DefaultTheme,
   // 使用注入插槽的包装组件覆盖 Layout
