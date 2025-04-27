@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { computed, watch } from 'vue';
-import { data } from '../../../blog.data';
+import { data } from '../../blog.data';
 import { currentLabel, updateLabel } from '../../store/label';
 
 const types = ['primary', 'success', 'warning', 'danger', 'info'];

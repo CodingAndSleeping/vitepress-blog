@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { withBase, useData } from 'vitepress';
-import { data } from '../../../blog.data';
+import { data } from '../../blog.data';
 import useBlogUpdateInfo from '../../hooks/useBlogUpdateInfo';
 
 const { theme } = useData();

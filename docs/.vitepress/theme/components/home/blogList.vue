@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vitepress';
-import { data } from '../../../blog.data';
+import { data } from '../../blog.data';
 import usePageData from '../../hooks/usePageData';
 import { computed } from 'vue';
 

@@ -19,7 +19,6 @@ declare const data: Data[];
 export { data };
 
 export default createContentLoader('/**/*.md', {
-  excerpt: false, // 包含摘录?
   transform(raw): Data[] {
     return raw
       .filter(({ frontmatter }) => frontmatter.title)
