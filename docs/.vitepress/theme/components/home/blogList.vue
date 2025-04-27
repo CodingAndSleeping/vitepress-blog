@@ -41,7 +41,7 @@
 import { useRouter } from 'vitepress';
 import { data } from '../../blog.data';
 import usePageData from '../../hooks/usePageData';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 
 import { currentLabel } from '../../store/label';
 
@@ -59,6 +59,13 @@ const _data = computed(() => {
 });
 
 const { pageData, currentPage, total } = usePageData(_data);
+
+watch(currentPage, () => {
+  scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
 
 const handleBlogClik = (url: string) => {
   router.go('/vitepress-blog' + url);
