@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import 'element-plus/dist/index.css';
 import SummaryPage from './components/summaryPage/index.vue';
+import MyHome from './components/home/index.vue';
 
 // 自定义样式
 import './style/index.css';
@@ -16,6 +17,7 @@ export default {
   Layout,
   enhanceApp({ app }) {
     app.use(ElementPlus);
+    app.component('MyHome', MyHome);
     app.component('SummaryPage', SummaryPage);
     for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
       app.component(key, component);
