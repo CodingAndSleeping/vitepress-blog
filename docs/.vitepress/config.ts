@@ -43,16 +43,16 @@ export default defineConfig({
   themeConfig,
 
   vite: {
-    resolve: {
-      alias: [
-        {
-          find: /^.*\/VPHome\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./theme/components/home/index.vue', import.meta.url),
-          ),
-        },
-      ],
-    },
+    // resolve: {
+    //   alias: [
+    //     {
+    //       find: /^.*\/VPHome\.vue$/,
+    //       replacement: fileURLToPath(
+    //         new URL('./theme/components/home/index.vue', import.meta.url),
+    //       ),
+    //     },
+    //   ],
+    // },
 
     plugins: [
       AutoSidebar({
