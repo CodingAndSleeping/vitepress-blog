@@ -68,4 +68,8 @@ const { theme } = useData();
     margin-bottom: 128px;
   }
 }
+
+:deep(.el-affix--fixed) {
+  z-index: 1 !important;
+}
 </style>
