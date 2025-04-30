@@ -140,10 +140,6 @@ const underlineColor = computed(() => {
       transition: 0.5s;
     }
 
-    .blog-list__title:hover {
-      background-size: 100% 2px;
-    }
-
     .blog-list__desc {
       width: fit-content;
       margin: 1rem 0;
@@ -184,8 +180,8 @@ const underlineColor = computed(() => {
     }
   }
 
-  .card:hover {
-    .title {
+  .blog-list:hover {
+    .blog-list__title {
       background-size: 100% 2px;
     }
   }
