@@ -107,6 +107,12 @@ const nav: DefaultTheme.Config['nav'] = [
         target: '_blank',
         rel: 'sponsored',
       },
+      {
+        text: '图片在线压缩器 🔥',
+        link: 'https://codingandsleeping.github.io/image-compressor/',
+        target: '_blank',
+        rel: 'sponsored',
+      },
     ],
   },
 ];
