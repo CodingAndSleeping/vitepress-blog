@@ -1,5 +1,10 @@
 <template>
-  <div class="main">
+  <div
+    class="main"
+    :style="{
+      '--underline-color': underlineColor,
+    }"
+  >
     <el-card
       shadow="hover"
       class="blog-list"
@@ -38,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vitepress';
+import { useRouter, useData } from 'vitepress';
 import { data } from '../../blog.data';
 import usePageData from '../../hooks/usePageData';
 import { computed, watch } from 'vue';
@@ -49,7 +54,7 @@ const router = useRouter();
 
 const _data = computed(() => {
   if (currentLabel.value) {
-    return data.filter((item) => {
+    return data.filter(item => {
       if (!item.label) return true;
       return item.label.includes(currentLabel.value);
     });
@@ -70,6 +75,12 @@ watch(currentPage, () => {
 const handleBlogClik = (url: string) => {
   router.go('/vitepress-blog' + url);
 };
+
+const { isDark } = useData();
+
+const underlineColor = computed(() => {
+  return isDark.value ? '#fff' : '#000';
+});
 </script>
 
 <style scoped lang="scss">
@@ -104,11 +115,7 @@ const handleBlogClik = (url: string) => {
       position: absolute;
       width: 100%;
       height: 30px;
-      background-image: linear-gradient(
-        45deg,
-        var(--el-color-primary),
-        var(--el-color-primary)
-      );
+      background-image: linear-gradient(45deg, var(--el-color-primary), var(--el-color-primary));
       transform: rotate(-45deg) translateY(-20px);
       display: flex;
       align-items: center;
@@ -128,8 +135,7 @@ const handleBlogClik = (url: string) => {
       overflow: hidden;
       text-overflow: ellipsis;
 
-      background: linear-gradient(to right, #353535, #353535) no-repeat left
-        bottom;
+      background: linear-gradient(to right, var(--underline-color), var(--underline-color)) no-repeat left bottom;
       background-size: 0 1px;
       transition: 0.5s;
     }
@@ -174,8 +180,8 @@ const handleBlogClik = (url: string) => {
     }
   }
 
-  .card:hover {
-    .title {
+  .blog-list:hover {
+    .blog-list__title {
       background-size: 100% 2px;
     }
   }
