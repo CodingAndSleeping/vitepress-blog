@@ -32,28 +32,17 @@ export default defineConfig({
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/vitepress-blog/favicon.svg' }],
-    [
-      'script',
-      {
-        defer: '',
-        src: 'https://cdn.jsdelivr.net/gh/Fuukei/Public_Repository@latest/static/js/sakura-less.js',
-      },
-    ],
+    // [
+    //   'script',
+    //   {
+    //     defer: '',
+    //     src: 'https://cdn.jsdelivr.net/gh/Fuukei/Public_Repository@latest/static/js/sakura-less.js',
+    //   },
+    // ],
   ],
   themeConfig,
 
   vite: {
-    // resolve: {
-    //   alias: [
-    //     {
-    //       find: /^.*\/VPHome\.vue$/,
-    //       replacement: fileURLToPath(
-    //         new URL('./theme/components/home/index.vue', import.meta.url),
-    //       ),
-    //     },
-    //   ],
-    // },
-
     plugins: [
       AutoSidebar({
         ignoreList: ['**/public/**'],
