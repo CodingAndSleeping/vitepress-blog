@@ -3,3 +3,5 @@ node_modules
 /docs/.vitepress/cache
 
 demo
+
+.DS_Store 
