@@ -1,1 +1,4 @@
 *.md linguist-detectable=true
+*.md linguist-documentation=false
+*.vue linguist-language=Vue
+*.ts linguist-language=TypeScript
