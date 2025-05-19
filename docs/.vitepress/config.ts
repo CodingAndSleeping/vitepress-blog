@@ -46,6 +46,16 @@ export default defineConfig({
   themeConfig,
 
   vite: {
+    resolve: {
+      alias: [
+        {
+          // 替换 VPSidebarItem 组件
+          find: /^.*\/VPSidebarItem\.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/sidebarItem/index.vue', import.meta.url)),
+        },
+      ],
+    },
+    
     plugins: [
       AutoSidebar({
         ignoreList: ['**/public/**'],
