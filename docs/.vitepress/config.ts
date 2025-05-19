@@ -13,6 +13,9 @@ const themeConfig = {
   socialLinks: [
     { icon: 'github', link: 'https://github.com/CodingAndSleeping' },
   ],
+  editLink: {
+    pattern: 'https://github.com/CodingAndSleeping/vitepress-blog/tree/main/docs/data/:path',
+  },
   search: {
     provider: 'local',
   },
