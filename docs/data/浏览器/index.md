@@ -4,6 +4,7 @@ lastUpdated: false
 prev: false
 next: false
 aside: false
+editLink: false
 ---
 
 <SummaryPage path="/浏览器/" :desc="$frontmatter.desc"></SummaryPage>

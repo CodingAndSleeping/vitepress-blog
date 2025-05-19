@@ -4,6 +4,7 @@ lastUpdated: false
 prev: false
 next: false
 aside: false
+editLink: false
 ---
 
 <SummaryPage path="/源码学习/Vue/" :desc="$frontmatter.desc"></SummaryPage>
