@@ -2,7 +2,7 @@
   <div
     class="main"
     :style="{
-      '--underline-color': underlineColor,
+      '--underline-color': isDark ? '#fff' : '#000';,
     }"
   >
     <el-card
