@@ -2,7 +2,7 @@
   <div
     class="main"
     :style="{
-      '--underline-color': isDark ? '#fff' : '#000',
+      '--underline-color': underlineColor,
     }"
   >
     <el-card
@@ -79,9 +79,10 @@ const handleBlogClik = (url: string) => {
 const { isDark } = useData();
 
 const underlineColor = computed(() => {
-  console.log(isDark.value)
   return isDark.value ? '#fff' : '#000';
 });
+
+console.log(underlineColor.value)
 </script>
 
 <style scoped lang="scss">
