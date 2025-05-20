@@ -79,6 +79,7 @@ const handleBlogClik = (url: string) => {
 const { isDark } = useData();
 
 const underlineColor = computed(() => {
+  console.log(isDark.value)
   return isDark.value ? '#fff' : '#000';
 });
 </script>
