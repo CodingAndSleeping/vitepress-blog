@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="main"
-    :style="{
-      '--underline-color': underlineColor,
-    }"
-  >
+  <div class="main">
     <el-card
       shadow="hover"
       class="blog-list"
@@ -43,46 +38,38 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter, useData } from 'vitepress';
-import { data } from '../../blog.data';
-import usePageData from '../../hooks/usePageData';
-import { computed, watch } from 'vue';
+import { useRouter, useData } from 'vitepress'
+import { data } from '../../blog.data'
+import usePageData from '../../hooks/usePageData'
+import { computed, watch } from 'vue'
 
-import { currentLabel } from '../../store/label';
+import { currentLabel } from '../../store/label'
 
-const router = useRouter();
+const router = useRouter()
 
 const _data = computed(() => {
   if (currentLabel.value) {
     return data.filter(item => {
-      if (!item.label) return true;
-      return item.label.includes(currentLabel.value);
-    });
+      if (!item.label) return true
+      return item.label.includes(currentLabel.value)
+    })
   } else {
-    return data;
+    return data
   }
-});
+})
 
-const { pageData, currentPage, total } = usePageData(_data);
+const { pageData, currentPage, total } = usePageData(_data)
 
 watch(currentPage, () => {
   scrollTo({
     top: 0,
     behavior: 'smooth',
-  });
-});
+  })
+})
 
 const handleBlogClik = (url: string) => {
-  router.go('/vitepress-blog' + url);
-};
-
-const { isDark } = useData();
-
-const underlineColor = computed(() => {
-  return isDark.value ? '#fff' : '#000';
-});
-
-console.log(underlineColor.value)
+  router.go('/vitepress-blog' + url)
+}
 </script>
 
 <style scoped lang="scss">
@@ -112,18 +99,6 @@ console.log(underlineColor.value)
       left: -2px;
       opacity: 0.5;
     }
-    .blog-list__top::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 30px;
-      background-image: linear-gradient(45deg, var(--el-color-primary), var(--el-color-primary));
-      transform: rotate(-45deg) translateY(-20px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 5px 10px #0000003b;
-    }
 
     .blog-list__title {
       width: fit-content;
@@ -137,7 +112,8 @@ console.log(underlineColor.value)
       overflow: hidden;
       text-overflow: ellipsis;
 
-      background: linear-gradient(to right, var(--underline-color), var(--underline-color)) no-repeat left bottom;
+      background: linear-gradient(to right, var(--el-text-color-primary), var(--el-text-color-primary)) no-repeat left
+        bottom;
       background-size: 0 1px;
       transition: 0.5s;
     }
