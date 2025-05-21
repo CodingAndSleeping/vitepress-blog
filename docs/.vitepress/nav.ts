@@ -113,6 +113,12 @@ const nav: DefaultTheme.Config['nav'] = [
         target: '_blank',
         rel: 'sponsored',
       },
+      {
+        text: 'CLI - pnpm catalog 自动导入 🔥',
+        link: 'https://github.com/CodingAndSleeping/padc',
+        target: '_blank',
+        rel: 'sponsored',
+      },
     ],
   },
 ];
