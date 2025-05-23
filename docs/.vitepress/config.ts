@@ -14,7 +14,8 @@ const themeConfig = {
     { icon: 'github', link: 'https://github.com/CodingAndSleeping' },
   ],
   editLink: {
-    pattern: 'https://github.com/CodingAndSleeping/vitepress-blog/tree/main/docs/data/:path',
+    pattern:
+      'https://github.com/CodingAndSleeping/vitepress-blog/tree/main/docs/data/:path',
   },
   search: {
     provider: 'local',
@@ -44,6 +45,9 @@ export default defineConfig({
     // ],
   ],
   themeConfig,
+  markdown: {
+    theme: 'vitesse-light',
+  },
 
   vite: {
     resolve: {
@@ -51,11 +55,16 @@ export default defineConfig({
         {
           // 替换 VPSidebarItem 组件
           find: /^.*\/VPSidebarItem\.vue$/,
-          replacement: fileURLToPath(new URL('./theme/components/sidebarItem/index.vue', import.meta.url)),
+          replacement: fileURLToPath(
+            new URL(
+              './theme/components/sidebarItem/index.vue',
+              import.meta.url,
+            ),
+          ),
         },
       ],
     },
-    
+
     plugins: [
       AutoSidebar({
         ignoreList: ['**/public/**'],

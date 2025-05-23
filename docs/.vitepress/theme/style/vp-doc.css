@@ -1,0 +1,22 @@
+.vp-doc a {
+  color: var(--vp-c-neutral);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.3);
+  transition: border 0.3s ease-in-out;
+}
+
+.vp-doc a:hover {
+  color: var(--vp-c-neutral);
+  border-bottom: 1px solid #555;
+}
+
+.vp-doc blockquote {
+  padding: 18px 20px 20px 15px;
+  position: relative;
+  color: var(--vp-c-text-3);
+  border-left: 5px solid var(--vp-c-gray-soft);
+}
+
+.vp-doc li::marker {
+  color: #d1d5db;
+}

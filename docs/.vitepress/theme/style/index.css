@@ -1,3 +1,13 @@
-@import './vp-code.css';
-@import './vp-code-group.css';
-@import './blockquote.css';
+/* @import './vp-code.css'; */
+/* @import './vp-code-group.css'; */
+@import './vp-doc.css';
+
+:root {
+  --code-color: #222;
+  --vp-code-color: var(--code-color);
+  --vp-code-bg: var(--code-bg);
+}
+
+.dark {
+  --code-color: #ddd;
+}
