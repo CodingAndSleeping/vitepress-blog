@@ -20,3 +20,7 @@
 .vp-doc li::marker {
   color: #d1d5db;
 }
+
+.VPDoc .outline-marker {
+  background-color: var(--vp-c-text-1);
+}
