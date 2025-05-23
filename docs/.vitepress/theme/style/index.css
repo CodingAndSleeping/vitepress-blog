@@ -4,6 +4,8 @@
 
 :root {
   --code-color: #222;
+  --code-bg: #aaaaaa18;
+
   --vp-code-color: var(--code-color);
   --vp-code-bg: var(--code-bg);
 }
