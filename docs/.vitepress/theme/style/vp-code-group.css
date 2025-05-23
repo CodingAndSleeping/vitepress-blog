@@ -9,7 +9,6 @@
 .vp-code-group {
   color: var(--vp-c-black-soft);
   border-radius: 8px;
-  box-shadow: 0px 0px 10px 0 rgb(0 0 0 / 20%);
 }
 
 /* 代码组：添加macOS风格的小圆点 */
@@ -33,7 +32,8 @@
 }
 
 /* 代码组：隐藏小圆点 */
-.vp-code-group div[class*='language-'].vp-adaptive-theme.line-numbers-mode::before {
+.vp-code-group
+  div[class*='language-'].vp-adaptive-theme.line-numbers-mode::before {
   display: none;
 }
 
