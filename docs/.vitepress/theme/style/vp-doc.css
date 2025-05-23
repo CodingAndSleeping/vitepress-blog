@@ -11,7 +11,7 @@
 }
 
 .vp-doc blockquote {
-  padding: 18px 20px 20px 15px;
+  padding: 0.5em 1em;
   position: relative;
   color: var(--vp-c-text-3);
   border-left: 5px solid var(--vp-c-gray-soft);
