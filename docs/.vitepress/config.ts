@@ -50,9 +50,6 @@ export default defineConfig({
   },
 
   vite: {
-    ssr: {
-      noExternal: ['@pixi/sound'],
-    },
     resolve: {
       alias: [
         {
