@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useData } from 'vitepress';
 
 const defaultQuotes = [
@@ -21,22 +21,32 @@ const useQuotes = () => {
   const interval = theme.value?.quoteOptions?.interval || 2;
 
   const quote = ref(quotes[0]);
-
-  let count = 0;
-  const func = () => {
-    if (count % (60 * interval) === 0) {
-      const index = Math.floor(Math.random() * quotes.length);
-      quote.value = quotes[index];
-    }
-    count++;
-    requestAnimationFrame(func);
-  };
-  requestAnimationFrame(func);
+  let animationFrameId: number | null = null;
 
   const changeQuote = () => {
     const index = Math.floor(Math.random() * quotes.length);
     quote.value = quotes[index];
   };
+
+  onMounted(() => {
+    if (typeof window === 'undefined') return;
+
+    let count = 0;
+    const func = () => {
+      if (count % (60 * interval) === 0) {
+        changeQuote();
+      }
+      count++;
+      animationFrameId = requestAnimationFrame(func);
+    };
+    animationFrameId = requestAnimationFrame(func);
+  });
+
+  onUnmounted(() => {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+  });
 
   return { quote, changeQuote };
 };
