@@ -1,15 +1,7 @@
-/* @import './vp-code.css'; */
-/* @import './vp-code-group.css'; */
+@import './vp-code.css';
+@import './vp-code-group.css';
 @import './vp-doc.css';
 
 :root {
-  --code-color: #222;
-  --code-bg: #aaaaaa18;
-
-  --vp-code-color: var(--code-color);
-  --vp-code-bg: var(--code-bg);
-}
-
-.dark {
-  --code-color: #ddd;
+  --vp-code-color: var(--vp-c-purple-1);
 }
