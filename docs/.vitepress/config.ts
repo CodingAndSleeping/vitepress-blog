@@ -36,13 +36,13 @@ export default defineConfig({
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/vitepress-blog/favicon.svg' }],
-    // [
-    //   'script',
-    //   {
-    //     defer: '',
-    //     src: 'https://cdn.jsdelivr.net/gh/Fuukei/Public_Repository@latest/static/js/sakura-less.js',
-    //   },
-    // ],
+    [
+      'script',
+      {
+        defer: '',
+        src: '/vitepress-blog/Resources/live2dcubismcore.min.js',
+      },
+    ],
   ],
   themeConfig,
   markdown: {
