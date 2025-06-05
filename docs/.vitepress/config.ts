@@ -40,7 +40,7 @@ export default defineConfig({
       'script',
       {
         defer: '',
-        src: '/vitepress-blog/resources/live2dcubismcore.min.js',
+        src: '/vitepress-blog/Resources/live2dcubismcore.min.js',
       },
     ],
   ],
