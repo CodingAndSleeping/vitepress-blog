@@ -1,16 +1,27 @@
 <template>
-  <canvas ref="canvasRef" class="live2d"></canvas>
+  <div class="live2d" ref="loading">
+    <canvas ref="canvasRef"></canvas>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, useTemplateRef } from 'vue';
+import { ElLoading } from 'element-plus';
 
-const canvasRef = ref<HTMLCanvasElement>();
-let app: any = null;
-let live2DSprite: any = null;
+const canvasRef = useTemplateRef<HTMLCanvasElement>('canvasRef');
+const loading = useTemplateRef<HTMLDivElement>('loading');
+
+let app;
+let live2DSprite;
 
 onMounted(async () => {
   if (typeof window === 'undefined') return;
+
+  const loadngInstance = ElLoading.service({
+    target: loading.value!,
+    text: 'lucking...',
+    background: 'transparent',
+  });
 
   const { Application, Ticker } = await import('pixi.js');
   const { Live2DSprite, Config } = await import('easy-live2d');
@@ -22,9 +33,14 @@ onMounted(async () => {
   Config.MotionGroupIdle = 'Idle'; // 设置默认的空闲动作组
   Config.MouseFollow = false; // 禁用鼠标跟随
 
-  // 初始化 Live2D 精灵
+  const url = new URL(
+    '../../resources/Hiyori/Hiyori.model3.json',
+    import.meta.url,
+  ).href;
+
+  // 初始化 Live2D 精灵ß
   live2DSprite.init({
-    modelPath: '/vitepress-blog/Resources/Hiyori/Hiyori.model3.json',
+    modelPath: url,
     ticker: Ticker.shared,
   });
 
@@ -38,10 +54,11 @@ onMounted(async () => {
     live2DSprite.width = canvasRef.value.clientWidth * window.devicePixelRatio;
     live2DSprite.height =
       canvasRef.value.clientHeight * window.devicePixelRatio;
+
+    live2DSprite.setRandomExpression();
     app.stage.addChild(live2DSprite);
 
-    // 随机选择表情
-    live2DSprite.setRandomExpression();
+    loadngInstance.close();
   }
 });
 
@@ -60,5 +77,10 @@ onUnmounted(() => {
   bottom: 0;
   width: 200px;
   height: 300px;
+
+  canvas {
+    height: 100%;
+    width: 100%;
+  }
 }
 </style>
