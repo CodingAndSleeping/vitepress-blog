@@ -33,14 +33,9 @@ onMounted(async () => {
   Config.MotionGroupIdle = 'Idle'; // 设置默认的空闲动作组
   Config.MouseFollow = false; // 禁用鼠标跟随
 
-  const url = new URL(
-    '../../resources/Hiyori/Hiyori.model3.json',
-    import.meta.url,
-  ).href;
-
   // 初始化 Live2D 精灵ß
   live2DSprite.init({
-    modelPath: url,
+    modelPath: '/vitepress-blog/Resources/Hiyori/Hiyori.model3.json',
     ticker: Ticker.shared,
   });
 
