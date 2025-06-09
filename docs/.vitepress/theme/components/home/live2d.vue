@@ -23,9 +23,10 @@ onMounted(async () => {
     background: 'transparent',
   });
 
-  const { Application, Ticker } = await import('pixi.js');
+  const { Application, Ticker, Loader } = await import('pixi.js');
   const { Live2DSprite, Config } = await import('easy-live2d');
 
+  const loader = new Loader();
   app = new Application();
   live2DSprite = new Live2DSprite();
 
@@ -53,7 +54,16 @@ onMounted(async () => {
     live2DSprite.setRandomExpression();
     app.stage.addChild(live2DSprite);
 
-    loadngInstance.close();
+    // loadngInstance.close();
+
+    // 👇 等待渲染完成后再关闭 loading
+    try {
+      await waitForModelRender(canvasRef.value);
+    } catch (e) {
+      console.warn('[Live2D] 加载超时：', e);
+    } finally {
+      loadngInstance.close();
+    }
   }
 });
 
@@ -63,6 +73,33 @@ onUnmounted(() => {
     live2DSprite.destroy();
   }
 });
+
+function waitForModelRender(
+  canvas: HTMLCanvasElement,
+  timeout = 10000,
+): Promise<void> {
+  const ctx = canvas.getContext('2d');
+  const startTime = Date.now();
+
+  return new Promise((resolve, reject) => {
+    function check() {
+      if (!ctx) return reject(new Error('Canvas context not available'));
+
+      const pixels = ctx.getImageData(0, 0, 1, 1).data;
+      const rendered = pixels[3] > 0; // alpha 通道不为 0 表示已渲染
+
+      if (rendered) {
+        resolve();
+      } else if (Date.now() - startTime > timeout) {
+        reject(new Error('Live2D 加载超时'));
+      } else {
+        requestAnimationFrame(check);
+      }
+    }
+
+    check();
+  });
+}
 </script>
 
 <style lang="scss" scoped>
