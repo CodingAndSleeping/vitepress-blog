@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import Header from './header.vue';
-import BlogList from './blogList.vue';
-import UserCard from './userCard.vue';
-import { useData } from 'vitepress';
-import LabelCard from './labelCard.vue';
-
-const { theme } = useData();
-</script>
-
 <template>
   <div
     class="VPHome"
@@ -23,8 +13,22 @@ const { theme } = useData();
         <LabelCard></LabelCard>
       </el-affix>
     </div>
+
+    <Footer></Footer>
   </div>
 </template>
+
+<script setup lang="ts">
+import Header from './header.vue';
+import BlogList from './blogList.vue';
+import UserCard from './userCard.vue';
+import { useData } from 'vitepress';
+import LabelCard from './labelCard.vue';
+
+import Footer from './footer.vue';
+
+const { theme } = useData();
+</script>
 
 <style scoped lang="scss">
 @keyframes focusing {

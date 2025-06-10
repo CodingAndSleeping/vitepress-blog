@@ -18,13 +18,15 @@
     "vite": "catalog:build",
     "vite-plugin-vitepress-auto-sidebar": "catalog:plugin",
     "vitepress": "catalog:build",
-    "vitepress-theme-website": "catalog:theme"
+    "vitepress-theme-website": "catalog:theme",
+    "busuanzi.pure.js": "catalog:theme"
   },
   "dependencies": {
     "@element-plus/icons-vue": "catalog:icon",
     "element-plus": "catalog:lib",
     "gray-matter": "catalog:util",
     "moment": "catalog:util",
-    "vue": "catalog:lib"
+    "vue": "catalog:lib",
+    "nprogress-v2": "catalog:theme"
   }
 }

@@ -1,9 +1,8 @@
 packages:
-  - 'docs/*'
-
+  - docs/*
 catalogs:
   type:
-    '@types/node': ^24.0.0
+    "@types/node": ^24.0.0
   style:
     sass: ^1.89.2
   build:
@@ -18,6 +17,8 @@ catalogs:
     gray-matter: ^4.0.3
     moment: ^2.30.1
   icon:
-    '@element-plus/icons-vue': ^2.3.1
+    "@element-plus/icons-vue": ^2.3.1
   theme:
     vitepress-theme-website: ^1.0.8
+    nprogress-v2: ^1.1.10
+    busuanzi.pure.js: ^1.0.3
