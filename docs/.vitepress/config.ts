@@ -5,7 +5,7 @@ import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar';
 import nav from './nav';
 
 const themeConfig = {
-  logo: '/favicon.svg',
+  logo: '/vitepress-blog/favicon.svg',
   avatar: '/avatar.jpg',
   outline: {
     level: [2, 4],
@@ -36,13 +36,7 @@ export default defineConfig({
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/vitepress-blog/favicon.svg' }],
-    [
-      'script',
-      {
-        defer: '',
-        src: '/vitepress-blog/Resources/live2dcubismcore.min.js',
-      },
-    ],
+    ['script', { src: '/vitepress-blog/live2d.js' }],
   ],
   themeConfig,
   markdown: {

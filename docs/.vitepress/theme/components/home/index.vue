@@ -4,7 +4,7 @@ import BlogList from './blogList.vue';
 import UserCard from './userCard.vue';
 import { useData } from 'vitepress';
 import LabelCard from './labelCard.vue';
-import Live2d from './live2d.vue';
+
 const { theme } = useData();
 </script>
 
@@ -16,7 +16,6 @@ const { theme } = useData();
     }"
   >
     <Header></Header>
-
     <div class="content">
       <BlogList></BlogList>
       <el-affix :offset="65">
@@ -24,8 +23,6 @@ const { theme } = useData();
         <LabelCard></LabelCard>
       </el-affix>
     </div>
-
-    <Live2d></Live2d>
   </div>
 </template>
 

@@ -17,7 +17,8 @@
     "sass": "^1.86.3",
     "vite": "^6.3.2",
     "vite-plugin-vitepress-auto-sidebar": "^1.7.1",
-    "vitepress": "2.0.0-alpha.4"
+    "vitepress": "2.0.0-alpha.4",
+    "vitepress-theme-website": "^1.0.8"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
