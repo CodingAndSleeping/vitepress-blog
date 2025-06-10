@@ -3,6 +3,8 @@ import { useData } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import { nextTick, provide } from 'vue';
 import BlogInfo from '../blogInfo/index.vue';
+import { useLive2d } from 'vitepress-theme-website';
+
 const { isDark, frontmatter } = useData();
 
 const enableTransitions = () =>
@@ -36,6 +38,26 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
     },
   );
+});
+
+useLive2d({
+  enable: true,
+  model: {
+    url: 'https://raw.githubusercontent.com/iCharlesZ/vscode-live2d-models/master/model-library/ryoufuku/ryoufuku.model.json',
+  },
+  display: {
+    position: 'left',
+    width: '135px',
+    height: '300px',
+    xOffset: '50px',
+    yOffset: '0px',
+  },
+  mobile: {
+    show: false,
+  },
+  react: {
+    opacity: 1,
+  },
 });
 </script>
 
