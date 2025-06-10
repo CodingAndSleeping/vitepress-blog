@@ -5,7 +5,7 @@ import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar';
 import nav from './nav';
 
 const themeConfig = {
-  logo: '/vitepress-blog/favicon.svg',
+  logo: '/favicon.svg',
   avatar: '/avatar.jpg',
   outline: {
     level: [2, 4],
