@@ -4,8 +4,29 @@ import BlogList from './blogList.vue';
 import UserCard from './userCard.vue';
 import { useData } from 'vitepress';
 import LabelCard from './labelCard.vue';
+import { useLive2d } from 'vitepress-theme-website';
 
 const { theme } = useData();
+
+useLive2d({
+  enable: true,
+  model: {
+    url: 'https://raw.githubusercontent.com/iCharlesZ/vscode-live2d-models/master/model-library/ryoufuku/ryoufuku.model.json',
+  },
+  display: {
+    position: 'left',
+    width: '135px',
+    height: '300px',
+    xOffset: '50px',
+    yOffset: '0px',
+  },
+  mobile: {
+    show: false,
+  },
+  react: {
+    opacity: 1,
+  },
+});
 </script>
 
 <template>

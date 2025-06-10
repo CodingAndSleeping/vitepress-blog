@@ -44,6 +44,9 @@ export default defineConfig({
   },
 
   vite: {
+    ssr: {
+      noExternal: ['@waline/client', 'vitepress-theme-website'],
+    },
     resolve: {
       alias: [
         {

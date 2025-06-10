@@ -23,28 +23,4 @@ export default {
       app.component(key, component);
     }
   },
-
-  setup() {
-    //看板娘
-    useLive2d({
-      enable: true,
-      model: {
-        url: 'https://raw.githubusercontent.com/iCharlesZ/vscode-live2d-models/master/model-library/ryoufuku/ryoufuku.model.json',
-        // url: '/vitepress-blog/Resources/Hiyori/Hiyori.model3.json',
-      },
-      display: {
-        position: 'left',
-        width: '135px',
-        height: '300px',
-        xOffset: '50px',
-        yOffset: '0px',
-      },
-      mobile: {
-        show: false,
-      },
-      react: {
-        opacity: 1,
-      },
-    });
-  },
 } satisfies Theme;
