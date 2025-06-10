@@ -7,7 +7,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import 'element-plus/dist/index.css';
 import SummaryPage from './components/summaryPage/index.vue';
 import MyHome from './components/home/index.vue';
-import { useLive2d } from 'vitepress-theme-website';
+
 // 自定义样式
 import './style/index.css';
 
