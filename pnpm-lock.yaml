@@ -31,6 +31,10 @@ catalogs:
     sass:
       specifier: ^1.89.2
       version: 1.89.2
+  theme:
+    vitepress-theme-website:
+      specifier: ^1.0.8
+      version: 1.0.8
   type:
     '@types/node':
       specifier: ^24.0.0
@@ -79,7 +83,7 @@ importers:
         specifier: catalog:build
         version: 2.0.0-alpha.4(@algolia/client-search@5.20.4)(@types/node@24.0.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.89.2)(search-insights@2.17.3)(typescript@5.8.3)
       vitepress-theme-website:
-        specifier: ^1.0.8
+        specifier: catalog:theme
         version: 1.0.8(typescript@5.8.3)
 
 packages:
