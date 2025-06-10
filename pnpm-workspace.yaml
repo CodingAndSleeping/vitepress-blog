@@ -1,3 +1,6 @@
+packages:
+  - 'docs/*'
+
 catalogs:
   type:
     '@types/node': ^24.0.0
