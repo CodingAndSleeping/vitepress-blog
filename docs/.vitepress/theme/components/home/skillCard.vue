@@ -6,6 +6,7 @@
       </div>
       <div class="skill-card__content">
         <img
+          class="skill-icon floaty"
           v-for="skill in skills"
           :key="skill"
           :src="withBase(`/icon/${skill}.svg`)"
@@ -73,13 +74,19 @@ const skills = ref<string[]>([
     }
 
     .skill-card__content {
-      display: flex;
-      flex-wrap: wrap;
-      img {
+      padding: 5px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
+      gap: 10px;
+      justify-items: center;
+      .skill-icon {
         height: 20px;
         width: 20px;
-        margin: 5px;
-        animation: focusing 1s infinite;
+        transition: filter 0.3s, transform 0.4s ease, box-shadow 0.3s ease;
+      }
+      .skill-icon:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        transform: rotate(10deg) translateY(-6px) scale(1.05);
       }
     }
   }
