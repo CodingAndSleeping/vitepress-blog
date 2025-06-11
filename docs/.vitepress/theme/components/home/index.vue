@@ -11,6 +11,7 @@
       <el-affix :offset="65">
         <UserCard></UserCard>
         <LabelCard></LabelCard>
+        <SkillCard></SkillCard>
       </el-affix>
     </div>
 
@@ -19,11 +20,13 @@
 </template>
 
 <script setup lang="ts">
+import { useData } from 'vitepress';
+
 import Header from './header.vue';
 import BlogList from './blogList.vue';
 import UserCard from './userCard.vue';
-import { useData } from 'vitepress';
 import LabelCard from './labelCard.vue';
+import SkillCard from './skillCard.vue';
 
 import Footer from './footer.vue';
 

@@ -44,13 +44,18 @@ useLive2d({
   enable: true,
   model: {
     url: 'https://raw.githubusercontent.com/iCharlesZ/vscode-live2d-models/master/model-library/ryoufuku/ryoufuku.model.json',
+    // url: 'https://imuncle.github.io/live2d/model/HyperdimensionNeptunia/blanc_swimwear/index.json',
+
+    // url: 'https://imuncle.github.io/live2d/model/HyperdimensionNeptunia/nepswim/index.json',
+
+    // url: 'https://imuncle.github.io/live2d/model/HyperdimensionNeptunia/noireswim/index.json',
   },
   display: {
     position: 'left',
-    width: '135px',
-    height: '300px',
+    width: '150px',
+    height: '350px',
     xOffset: '50px',
-    yOffset: '0px',
+    yOffset: '10px',
   },
   mobile: {
     show: false,
