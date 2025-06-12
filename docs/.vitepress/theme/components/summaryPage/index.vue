@@ -2,17 +2,16 @@
   <div class="summary">
     <h1 class="summary__title">{{ desc }}</h1>
 
-    <el-timeline class="summary__list">
-      <el-timeline-item
+    <ul class="summary__list">
+      <li
         v-for="item of pageData"
         :key="item.link"
         class="summary__item"
         @click="router.go(item.link)"
-        hide-timestamp
       >
         <span> {{ item.text }} 📎</span>
-      </el-timeline-item>
-    </el-timeline>
+      </li>
+    </ul>
 
     <div class="summary__pagination">
       <el-pagination
