@@ -9,7 +9,7 @@
         class="summary__item"
         @click="router.go(item.link)"
       >
-        <span> {{ item.text }} 📎</span>
+        <span> {{ item.text }} 🔗</span>
       </li>
     </ul>
 
