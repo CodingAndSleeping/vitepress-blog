@@ -31,7 +31,19 @@ const skills = ref<string[]>([
   'sass',
   'tailwindcss',
   'electron',
+  'markdown',
   'pinia',
+  'vite',
+  'webpack',
+  'babel',
+  'rollupjs',
+  'vitepress',
+  'vitest',
+  'mapbox',
+  'git',
+  'github',
+  'npm',
+  'pnpm',
 
   'nodejs',
   'express',
@@ -41,19 +53,6 @@ const skills = ref<string[]>([
   'docker',
   'linux',
   'nginx',
-
-  'git',
-  'github',
-  'npm',
-  'pnpm',
-
-  'vite',
-  'webpack',
-  'babel',
-  'rollupjs',
-  'vitepress',
-  'vitest',
-  'mapbox',
   'python',
 ]);
 </script>
@@ -90,6 +89,7 @@ const skills = ref<string[]>([
       justify-items: center;
       .skill-icon {
         height: 20px;
+        width: 20px;
         transition: transform 0.4s ease;
       }
       .skill-icon:hover {
