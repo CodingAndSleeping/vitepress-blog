@@ -89,8 +89,7 @@ const skills = ref<string[]>([
       gap: 15px;
       justify-items: center;
       .skill-icon {
-        height: 25px;
-        width: 25px;
+        height: 20px;
         transition: transform 0.4s ease;
       }
       .skill-icon:hover {
