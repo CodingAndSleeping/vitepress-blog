@@ -2,7 +2,7 @@
   <div class="main">
     <el-card shadow="hover" body-class="skill-card">
       <div class="skill-card__title">
-        <span>🪄 我的技能</span>
+        <span><img :src="withBase('/skill.svg')" alt="" /> 我的技能</span>
       </div>
       <div class="skill-card__content">
         <img
@@ -71,22 +71,30 @@ const skills = ref<string[]>([
 
       display: flex;
       justify-content: space-between;
+
+      span {
+        display: flex;
+        align-items: center;
+        img {
+          width: 1rem;
+          margin: 0 5px;
+        }
+      }
     }
 
     .skill-card__content {
       padding: 5px;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
-      gap: 10px;
+      gap: 15px;
       justify-items: center;
       .skill-icon {
-        height: 20px;
-        width: 20px;
-        transition: filter 0.3s, transform 0.4s ease, box-shadow 0.3s ease;
+        height: 25px;
+        width: 25px;
+        transition: transform 0.4s ease;
       }
       .skill-icon:hover {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        transform: rotate(10deg) translateY(-6px) scale(1.05);
+        transform: rotate(10deg) translateY(-6px) scale(1.2);
       }
     }
   }

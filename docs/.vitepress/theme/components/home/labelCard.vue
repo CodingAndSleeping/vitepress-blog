@@ -2,7 +2,7 @@
   <div class="main">
     <el-card shadow="hover" body-class="label-card">
       <div class="label-card__title">
-        <span>🔖 文章标签</span>
+        <span><img :src="withBase('/tag.svg')" alt="" /> 文章标签</span>
         <el-tag
           v-if="currentLabel"
           size="small"
@@ -32,6 +32,7 @@
 import { computed, watch } from 'vue';
 import { data } from '../../blog.data';
 import { currentLabel, updateLabel } from '../../store/label';
+import { withBase } from 'vitepress';
 
 const types = ['primary', 'success', 'warning', 'danger', 'info'];
 const blogLabels = computed(() => {
@@ -79,6 +80,15 @@ watch(currentLabel, () => {
 
       display: flex;
       justify-content: space-between;
+
+      span {
+        display: flex;
+        align-items: center;
+        img {
+          width: 1rem;
+          margin: 0 5px;
+        }
+      }
     }
 
     .label-card__content {
