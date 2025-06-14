@@ -3,12 +3,14 @@ import { type DefaultTheme, VPLink } from 'vitepress/theme';
 import { computed } from 'vue';
 import { useSidebarControl } from 'vitepress/dist/client/theme-default/composables/sidebar.js';
 import SidebarItem from './index.vue';
-
+import { useData, useRoute } from 'vitepress';
 const props = defineProps<{
   item: DefaultTheme.SidebarItem;
   index?: number;
   depth: number;
 }>();
+
+const { frontmatter } = useData();
 
 const {
   collapsed,
@@ -56,7 +58,12 @@ function onCaretClick() {
 </script>
 
 <template>
-  <component :is="sectionTag" class="VPSidebarItem" :class="classes">
+  <component
+    v-if="frontmatter.title"
+    :is="sectionTag"
+    class="VPSidebarItem"
+    :class="classes"
+  >
     <div
       v-if="item.text"
       class="item"

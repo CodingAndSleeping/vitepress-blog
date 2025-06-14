@@ -7,7 +7,6 @@
           v-if="currentLabel"
           size="small"
           closable
-          :disable-transitions="false"
           @close="handleRemoveLabel"
           >{{ currentLabel }}</el-tag
         >
@@ -16,13 +15,14 @@
         <el-tag
           class="label-card__label"
           v-for="label in blogLabels"
-          :key="label"
+          :key="label.text"
           :type="label.type"
           size="small"
           effect="dark"
           @click="handleLabelClick(label.text)"
-          >{{ label.text }}</el-tag
         >
+          {{ label.text }}
+        </el-tag>
       </div>
     </el-card>
   </div>
