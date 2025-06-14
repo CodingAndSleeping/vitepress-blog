@@ -2,6 +2,10 @@ import { DefaultTheme } from 'vitepress';
 
 const nav: DefaultTheme.Config['nav'] = [
   {
+    text: '博客文章',
+    link: '/博客文章/',
+  },
+  {
     text: '前端知识',
     items: [
       {
@@ -79,11 +83,6 @@ const nav: DefaultTheme.Config['nav'] = [
   {
     text: '网络通信',
     link: '/网络通信/',
-  },
-
-  {
-    text: '其他',
-    link: '/其他/',
   },
 
   {

@@ -7,4 +7,4 @@ aside: false
 editLink: false
 ---
 
-<SummaryPage path="/其他/" :desc="$frontmatter.desc"></SummaryPage>
+<SummaryPage path="/博客文章/" :desc="$frontmatter.desc"></SummaryPage>

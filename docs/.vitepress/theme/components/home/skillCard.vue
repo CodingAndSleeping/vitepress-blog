@@ -2,7 +2,7 @@
   <div class="main">
     <el-card shadow="hover" body-class="skill-card">
       <div class="skill-card__title">
-        <span><img :src="withBase('/skill.svg')" alt="" /> 我的技能</span>
+        <span><img :src="withBase('/skill.svg')" alt="" />个人技能</span>
       </div>
       <div class="skill-card__content">
         <img
@@ -67,7 +67,6 @@ const skills = ref<string[]>([
       border-bottom: 1px solid #dddddd;
       height: 1.8rem;
       margin-bottom: 0.5rem;
-
       display: flex;
       justify-content: space-between;
 
