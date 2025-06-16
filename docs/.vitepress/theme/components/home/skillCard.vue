@@ -28,6 +28,7 @@ const skills = ref<string[]>([
   'typescript',
   'vue',
   'react',
+  'nextjs',
   'sass',
   'tailwindcss',
   'electron',
