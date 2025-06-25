@@ -94,7 +94,7 @@ const skills = ref<string[]>([
       gap: 10px;
       justify-items: center;
       .skill-icon {
-        background: var(--code-bg); // 可根据主题自动变亮/变暗
+        background: var(--code-bg);
         border-radius: 10px;
         padding: 5px;
         width: 30px;
@@ -102,8 +102,8 @@ const skills = ref<string[]>([
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
       }
       .skill-icon:hover {
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        background: rgba(100, 100, 255, 0.15); // 提示高亮
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        background: rgba(64, 64, 255, 0.15); // 提示高亮
       }
     }
   }
@@ -121,15 +121,5 @@ const skills = ref<string[]>([
   50% {
     transform: translateY(5px);
   }
-}
-
-:deep(.el-popper.is-customized) {
-  /* Set padding to ensure the height is 32px */
-  // padding: 6px 12px;
-  background: linear-gradient(90deg, rgb(159, 229, 151), rgb(204, 229, 129));
-}
-:deep(.el-popper.is-customized .el-popper__arrow::before) {
-  background: linear-gradient(45deg, #b2e68d, #bce689);
-  right: 0;
 }
 </style>
