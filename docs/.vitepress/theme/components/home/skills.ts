@@ -14,6 +14,8 @@ export default [
   { name: 'electron', url: 'https://www.electronjs.org/' },
   { name: 'markdown', url: 'https://www.markdownguide.org/' },
   { name: 'pinia', url: 'https://pinia.vuejs.org/zh/' },
+  { name: 'zustand', url: 'https://zustand-demo.pmnd.rs/' },
+
   { name: 'vite', url: 'https://cn.vite.dev/' },
   { name: 'webpack', url: 'https://webpack.js.org/' },
   { name: 'babel', url: 'https://babeljs.io/' },
