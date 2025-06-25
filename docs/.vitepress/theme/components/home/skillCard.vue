@@ -7,15 +7,16 @@
       <div class="skill-card__content">
         <el-tooltip
           v-for="(skill, index) in skills"
-          :key="skill"
-          :content="skill"
+          :key="skill.name"
+          :content="skill.name"
           placement="top"
           :hide-after="0"
         >
           <img
             class="skill-icon floaty"
-            :src="withBase(`/icon/${skill}.svg`)"
+            :src="withBase(`/icon/${skill.name}.svg`)"
             :style="{ '--i': index % 7 }"
+            @click="handleClick(skill.url)"
           />
         </el-tooltip>
       </div>
@@ -25,43 +26,11 @@
 
 <script setup lang="ts">
 import { withBase } from 'vitepress';
-import { ref } from 'vue';
+import skills from './skills';
 
-const skills = ref<string[]>([
-  'javascript',
-  'html',
-  'css',
-  'typescript',
-  'vue',
-  'react',
-  'nextjs',
-  'sass',
-  'tailwindcss',
-  'electron',
-  'markdown',
-  'pinia',
-  'vite',
-  'webpack',
-  'babel',
-  'rollupjs',
-  'vitepress',
-  'vitest',
-  'mapbox',
-  'git',
-  'github',
-  'npm',
-  'pnpm',
-
-  'nodejs',
-  'express',
-  'nestjs',
-  'mysql',
-  'redis',
-  'docker',
-  'linux',
-  'nginx',
-  'python',
-]);
+const handleClick = (url: string) => {
+  window.open(url);
+};
 </script>
 <style scoped lang="scss">
 .main {
@@ -104,6 +73,7 @@ const skills = ref<string[]>([
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       }
       .skill-icon:hover {
+        cursor: pointer;
         background: radial-gradient(
           circle at center,
           rgba(100, 100, 255, 0.2),
