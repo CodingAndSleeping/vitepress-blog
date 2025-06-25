@@ -99,11 +99,18 @@ const skills = ref<string[]>([
         padding: 5px;
         width: 30px;
         height: 30px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        filter: brightness(1) contrast(1.1);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       }
       .skill-icon:hover {
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        background: rgba(64, 64, 255, 0.15); // 提示高亮
+        background: radial-gradient(
+          circle at center,
+          rgba(100, 100, 255, 0.2),
+          transparent
+        );
+        box-shadow: 0 0 8px rgba(64, 128, 255, 0.4),
+          0 0 14px rgba(64, 128, 255, 0.2);
       }
     }
   }
