@@ -5,21 +5,17 @@
         <span><img :src="withBase('/skill.svg')" alt="" />个人技能</span>
       </div>
       <div class="skill-card__content">
-        <img
-          class="skill-icon floaty"
-          v-for="skill in skills"
-          :key="skill"
-          :src="withBase(`/icon/${skill}.svg`)"
-          :title="skill"
-        />
+        <el-tooltip v-for="(skill, index) in skills" :key="skill" :content="skill" placement="top">
+          <img class="skill-icon floaty" :src="withBase(`/icon/${skill}.svg`)" :style="{ '--i': index % 8 }" />
+        </el-tooltip>
       </div>
     </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { withBase } from 'vitepress';
-import { ref } from 'vue';
+import { withBase } from 'vitepress'
+import { ref } from 'vue'
 
 const skills = ref<string[]>([
   'javascript',
@@ -55,7 +51,7 @@ const skills = ref<string[]>([
   'linux',
   'nginx',
   'python',
-]);
+])
 </script>
 <style scoped lang="scss">
 .main {
@@ -84,18 +80,36 @@ const skills = ref<string[]>([
     .skill-card__content {
       padding: 5px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+      gap: 10px;
       justify-items: center;
       .skill-icon {
-        height: 20px;
-        width: 20px;
-        transition: transform 0.4s ease;
+        background: var(--code-bg); // 可根据主题自动变亮/变暗
+        border-radius: 10px;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
       }
       .skill-icon:hover {
-        transform: rotate(10deg) translateY(-6px) scale(1.2);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        background: rgba(100, 100, 255, 0.15); // 提示高亮
       }
     }
+  }
+}
+
+.floaty {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.4s);
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(4px);
   }
 }
 </style>
