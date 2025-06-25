@@ -5,8 +5,18 @@
         <span><img :src="withBase('/skill.svg')" alt="" />个人技能</span>
       </div>
       <div class="skill-card__content">
-        <el-tooltip v-for="(skill, index) in skills" :key="skill" :content="skill" placement="top">
-          <img class="skill-icon floaty" :src="withBase(`/icon/${skill}.svg`)" :style="{ '--i': index % 8 }" />
+        <el-tooltip
+          v-for="(skill, index) in skills"
+          :key="skill"
+          :content="skill"
+          placement="top"
+          :hide-after="0"
+        >
+          <img
+            class="skill-icon floaty"
+            :src="withBase(`/icon/${skill}.svg`)"
+            :style="{ '--i': index % 7 }"
+          />
         </el-tooltip>
       </div>
     </el-card>
@@ -14,8 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { withBase } from 'vitepress'
-import { ref } from 'vue'
+import { withBase } from 'vitepress';
+import { ref } from 'vue';
 
 const skills = ref<string[]>([
   'javascript',
@@ -51,7 +61,7 @@ const skills = ref<string[]>([
   'linux',
   'nginx',
   'python',
-])
+]);
 </script>
 <style scoped lang="scss">
 .main {
@@ -109,7 +119,17 @@ const skills = ref<string[]>([
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(4px);
+    transform: translateY(5px);
   }
+}
+
+:deep(.el-popper.is-customized) {
+  /* Set padding to ensure the height is 32px */
+  // padding: 6px 12px;
+  background: linear-gradient(90deg, rgb(159, 229, 151), rgb(204, 229, 129));
+}
+:deep(.el-popper.is-customized .el-popper__arrow::before) {
+  background: linear-gradient(45deg, #b2e68d, #bce689);
+  right: 0;
 }
 </style>
