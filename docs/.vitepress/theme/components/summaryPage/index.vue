@@ -50,7 +50,7 @@ const toc = computed(() => {
   }));
 });
 
-const pageSize = 9;
+const pageSize = 15;
 
 const { pageData, currentPage, total } = usePageData(toc, pageSize);
 </script>
