@@ -39,6 +39,8 @@ const { frontmatter } = useData();
   display: flex;
   align-items: center;
 
+  margin-bottom: 2rem;
+
   .info__item {
     display: flex;
     align-items: center;

@@ -24,3 +24,8 @@
 .VPDoc .outline-marker {
   background-color: var(--vp-c-text-1);
 }
+
+.vp-doc h2 {
+  border: none;
+  margin-top: 0;
+}
