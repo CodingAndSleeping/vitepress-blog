@@ -5,6 +5,7 @@ prev: false
 next: false
 aside: false
 editLink: false
+sidebar: false
 ---
 
 <SummaryPage path="/博客文章/" :desc="$frontmatter.desc"></SummaryPage>

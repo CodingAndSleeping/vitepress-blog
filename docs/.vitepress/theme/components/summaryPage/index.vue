@@ -7,17 +7,18 @@
         v-for="item of pageData"
         :key="item.link"
         class="summary__item"
+        :title="item.text"
         @click="router.go(item.link)"
       >
-        <span> {{ item.text }} 🔗</span>
+        <span class="summary__link">🔗 {{ item.text }} </span>
       </li>
     </ul>
 
     <div class="summary__pagination">
       <el-pagination
         hide-on-single-page
-        size="small"
         background
+        size="small"
         layout="prev, pager, next, total"
         v-model:currentPage="currentPage"
         :total="total"
@@ -49,43 +50,72 @@ const toc = computed(() => {
   }));
 });
 
-const pageSize = 20;
+const pageSize = 9;
 
 const { pageData, currentPage, total } = usePageData(toc, pageSize);
 </script>
 
 <style lang="scss" scoped>
 .summary {
-  width: 300px;
-  margin: 0 auto;
+  max-width: 350px;
+  margin: 3rem auto;
+
   .summary__title {
-    font-size: 24px;
+    font-size: 1.75rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--vp-c-text-1);
   }
 
-  .summary__item {
-    span {
-      font-size: 15px;
-      line-height: 1.5;
-      color: #037bf4;
-      border-bottom: 1px solid #037bf4;
+  .summary__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .summary__item {
+      max-width: 100%;
+      margin: 0.5rem auto;
+      padding-left: 1rem;
+      border-left: 2px solid var(--vp-c-border);
+      transition: border-color 0.2s;
       cursor: pointer;
-    }
 
-    span:hover {
-      color: #90c7fa;
+      .summary__link {
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: color 0.2s;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        border-bottom: 1px dashed transparent;
+        transition: all 0.2s ease;
+      }
+
+      &:hover {
+        border-left-color: var(--vp-c-brand);
+        .summary__link {
+          color: var(--vp-c-brand);
+          border-bottom-color: var(--vp-c-brand);
+        }
+      }
     }
   }
 
-  // .summary__pagination {
-  //   position: absolute;
-  //   bottom: 0;
-  //   transform: translateY(50px);
-  // }
-}
+  .summary__pagination {
+    margin-top: 2rem;
+    text-align: center;
+  }
 
-:deep(.el-pager) {
-  padding: 0;
+  :deep(.el-pagination) {
+    width: fit-content;
+    margin: 1rem auto;
+  }
+  :deep(.el-pager) {
+    padding: 0;
+  }
 }
 </style>

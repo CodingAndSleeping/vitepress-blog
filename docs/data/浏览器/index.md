@@ -5,6 +5,7 @@ prev: false
 next: false
 aside: false
 editLink: false
+sidebar: false
 ---
 
 <SummaryPage path="/浏览器/" :desc="$frontmatter.desc"></SummaryPage>

@@ -58,12 +58,7 @@ function onCaretClick() {
 </script>
 
 <template>
-  <component
-    v-if="frontmatter.title"
-    :is="sectionTag"
-    class="VPSidebarItem"
-    :class="classes"
-  >
+  <component :is="sectionTag" class="VPSidebarItem" :class="classes">
     <div
       v-if="item.text"
       class="item"
