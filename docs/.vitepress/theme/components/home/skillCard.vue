@@ -47,6 +47,8 @@ const handleClick = (url: string) => {
       justify-content: space-between;
 
       span {
+        font-size: 0.9rem;
+        font-weight: bold;
         display: flex;
         align-items: center;
         img {
