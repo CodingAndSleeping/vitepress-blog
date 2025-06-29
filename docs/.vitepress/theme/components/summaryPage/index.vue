@@ -1,6 +1,9 @@
 <template>
   <div class="summary">
-    <h1 class="summary__title">{{ desc }}</h1>
+    <h1 class="summary__title">
+      文章列表
+      <span>{{ desc }}</span>
+    </h1>
 
     <ul class="summary__list">
       <li
@@ -63,9 +66,20 @@ const { pageData, currentPage, total } = usePageData(toc, pageSize);
   .summary__title {
     font-size: 1.75rem;
     font-weight: bold;
-    text-align: center;
     margin-bottom: 2rem;
     color: var(--vp-c-text-1);
+    span {
+      font-size: 0.95rem;
+      color: var(--vp-c-text-2);
+      font-weight: 400;
+      margin: 0;
+      flex: 1;
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 60%;
+    }
   }
 
   .summary__list {
