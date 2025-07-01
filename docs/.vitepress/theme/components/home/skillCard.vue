@@ -5,32 +5,49 @@
         <span><img :src="withBase('/skill.svg')" alt="" />个人技能</span>
       </div>
       <div class="skill-card__content">
-        <el-tooltip
+        <img
           v-for="(skill, index) in skills"
           :key="skill.name"
-          :content="skill.name"
-          placement="top"
-          :hide-after="0"
-        >
-          <img
-            class="skill-icon floaty"
-            :src="withBase(`/icon/${skill.name}.svg`)"
-            :style="{ '--i': index % 7 }"
-            @click="handleClick(skill.url)"
-          />
-        </el-tooltip>
+          class="skill-icon floaty"
+          :src="withBase(`/icon/${skill.name}.svg`)"
+          :style="{ '--i': index % 7 }"
+          @mouseover="e => handleMouseover(e, skill.name)"
+          @click="handleClick(skill.url)"
+        />
+
+        <ClientOnly>
+          <el-tooltip
+            :visiable="visiable"
+            :content="skillName"
+            :virtual-ref="imgRef"
+            virtual-triggering
+            placement="top"
+          >
+          </el-tooltip>
+        </ClientOnly>
       </div>
     </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { withBase } from 'vitepress';
-import skills from './skills';
+import { ref } from 'vue'
+import { withBase } from 'vitepress'
+import skills from './skills'
+
+const visiable = ref(false)
+const imgRef = ref<HTMLImageElement | null>(null)
+
+const skillName = ref('')
+const handleMouseover = (e: MouseEvent, name: string) => {
+  skillName.value = name
+  visiable.value = true
+  imgRef.value = e.currentTarget as HTMLImageElement
+}
 
 const handleClick = (url: string) => {
-  window.open(url);
-};
+  window.open(url)
+}
 </script>
 <style scoped lang="scss">
 .main {
@@ -76,13 +93,8 @@ const handleClick = (url: string) => {
       }
       .skill-icon:hover {
         cursor: pointer;
-        background: radial-gradient(
-          circle at center,
-          rgba(100, 100, 255, 0.2),
-          transparent
-        );
-        box-shadow: 0 0 8px rgba(64, 128, 255, 0.4),
-          0 0 14px rgba(64, 128, 255, 0.2);
+        background: radial-gradient(circle at center, rgba(100, 100, 255, 0.2), transparent);
+        box-shadow: 0 0 8px rgba(64, 128, 255, 0.4), 0 0 14px rgba(64, 128, 255, 0.2);
       }
     }
   }
