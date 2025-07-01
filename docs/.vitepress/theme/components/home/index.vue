@@ -10,9 +10,7 @@
       <BlogList></BlogList>
       <el-affix :offset="65">
         <UserCard></UserCard>
-        <ClientOnly>
-          <SkillCard></SkillCard>
-        </ClientOnly>
+        <SkillCard></SkillCard>
         <LabelCard></LabelCard>
       </el-affix>
     </div>
